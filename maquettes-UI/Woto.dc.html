@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><style>body{margin:0;background:#eceae5;font-family:system-ui,-apple-system,sans-serif}a{color:#2a78d6}a:hover{color:#1c5aa8}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Woto — 8 écrans, états inclus · 390 px · system-ui</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Accueil — chauffeur à jour</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="display:flex;align-items:center;gap:6px;color:#52514e"><span style="font-size:11px">4G</span><span style="display:block;width:20px;height:10px;border:1px solid #898781;border-radius:2px;padding:1px"><span style="display:block;width:70%;height:100%;background:#52514e;border-radius:1px"></span></span></span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div style="font:700 19px system-ui;color:#0b0b0b;letter-spacing:-.2px">Moussa Diop</div><div style="font:400 13px system-ui;color:#898781;margin-top:2px">Dacia Logan · DK 4821 AB</div></div>
+      <div style="font:600 12px system-ui;color:#52514e;padding:7px 10px;background:#fff;border:1px solid #e6e5df;border-radius:8px;min-height:34px;display:flex;align-items:center">Juillet</div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:18px">
+      <div style="font:500 13px system-ui;color:#52514e">Solde du chauffeur</div>
+      <div style="font:700 46px/1.05 system-ui;letter-spacing:-1.8px;color:#0b0b0b;margin:6px 0 10px">0 F</div>
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#e7f6e7;border-radius:999px;padding:7px 12px"><span style="width:8px;height:8px;border-radius:50%;background:#0ca30c"></span><span style="font:600 13px system-ui;color:#0ca30c">À jour · dernier versement hier</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px 16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px system-ui;color:#52514e">Semaine du 27 juillet</span><span style="font:600 13px system-ui;color:#0b0b0b">5 / 6 versés</span></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:11px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">L</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">M</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">M</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">J</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">V</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fff;border:1.5px dashed #d6d5cf"></div><span style="font:600 11px system-ui;color:#0b0b0b">S</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Encaissé du mois</div><div style="font:700 22px system-ui;color:#0b0b0b;letter-spacing:-.6px;margin-top:5px">173 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Net du mois</div><div style="font:700 22px system-ui;color:#0b0b0b;letter-spacing:-.6px;margin-top:5px">125 000 F</div></div>
+    </div>
+    <div style="background:#eaf2fd;border:1px solid #2a78d626;border-radius:12px;flex:none;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font:500 13px/1.35 system-ui;color:#0b0b0b">Assurance à renouveler dans 12 jours</span><span style="font:600 12px system-ui;color:#2a78d6;white-space:nowrap">Voir</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;flex:none">
+      <div style="min-height:52px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#fff">Enregistrer un versement</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none">
+        <div style="min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Dépense</div>
+        <div style="min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Photos</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:2px"><span style="font:600 14px system-ui;color:#0b0b0b">Derniers mouvements</span><span style="font:600 12px system-ui;color:#2a78d6">Tout voir</span></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #f0efe9"><div><div style="font:600 14px system-ui;color:#0b0b0b">Versement · Wave</div><div style="font:400 12px system-ui;color:#898781;margin-top:1px">Jeu. 30 juillet</div></div><span style="font:600 14px system-ui;color:#0ca30c">+ 8 000 F</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px"><div><div style="font:600 14px system-ui;color:#0b0b0b">Entretien · vidange</div><div style="font:400 12px system-ui;color:#898781;margin-top:1px">Mer. 29 juillet</div></div><span style="font:600 14px system-ui;color:#d03b3b">− 22 000 F</span></div>
+      
+    </div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Accueil — chauffeur en retard</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="display:flex;align-items:center;gap:6px;color:#52514e"><span style="font-size:11px">4G</span><span style="display:block;width:20px;height:10px;border:1px solid #898781;border-radius:2px;padding:1px"><span style="display:block;width:70%;height:100%;background:#52514e;border-radius:1px"></span></span></span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div style="font:700 19px system-ui;color:#0b0b0b;letter-spacing:-.2px">Moussa Diop</div><div style="font:400 13px system-ui;color:#898781;margin-top:2px">Dacia Logan · DK 4821 AB</div></div>
+      <div style="font:600 12px system-ui;color:#52514e;padding:7px 10px;background:#fff;border:1px solid #e6e5df;border-radius:8px;min-height:34px;display:flex;align-items:center">Juillet</div>
+    </div>
+    <div style="background:#fff;border:1px solid #d03b3b40;border-radius:14px;flex:none;padding:18px">
+      <div style="font:500 13px system-ui;color:#52514e">Solde du chauffeur</div>
+      <div style="font:700 46px/1.05 system-ui;letter-spacing:-1.8px;color:#d03b3b;margin:6px 0 10px">{{ soldeDu }}</div>
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#fbeaea;border-radius:999px;padding:7px 12px"><span style="width:8px;height:8px;border-radius:50%;background:#d03b3b"></span><span style="font:600 13px system-ui;color:#d03b3b">{{ nbJours }} jours non versés · 1 partiel</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px 16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px system-ui;color:#52514e">Semaine du 27 juillet</span><span style="font:600 13px system-ui;color:#d03b3b">2 / 5 versés</span></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:11px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#e7f6e7;border:1px solid #0ca30c33"></div><span style="font:600 11px system-ui;color:#898781">L</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fbeaea;border:1px solid #d03b3b40"></div><span style="font:600 11px system-ui;color:#898781">M</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fbeaea;border:1px solid #d03b3b40"></div><span style="font:600 11px system-ui;color:#898781">M</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fdf3dd;border:1px solid #fab21966"></div><span style="font:600 11px system-ui;color:#898781">J</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fbeaea;border:1px solid #d03b3b40"></div><span style="font:600 11px system-ui;color:#898781">V</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:34px;border-radius:8px;background:#fff;border:1.5px dashed #d6d5cf"></div><span style="font:600 11px system-ui;color:#0b0b0b">S</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Encaissé du mois</div><div style="font:700 22px system-ui;color:#0b0b0b;letter-spacing:-.6px;margin-top:5px">146 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Net du mois</div><div style="font:700 22px system-ui;color:#0b0b0b;letter-spacing:-.6px;margin-top:5px">98 000 F</div></div>
+    </div>
+    <div style="background:#fbeaea;border:1px solid #d03b3b33;border-radius:12px;flex:none;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font:500 13px/1.35 system-ui;color:#0b0b0b">Retard depuis mardi 28 juillet</span><span style="font:600 12px system-ui;color:#d03b3b;white-space:nowrap">Relancer</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;flex:none">
+      <div style="min-height:52px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#fff">Enregistrer un versement</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none">
+        <div style="min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Dépense</div>
+        <div style="min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Photos</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:2px"><span style="font:600 14px system-ui;color:#0b0b0b">Derniers mouvements</span><span style="font:600 12px system-ui;color:#2a78d6">Tout voir</span></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #f0efe9"><div><div style="font:600 14px system-ui;color:#0b0b0b">Versement partiel · espèces</div><div style="font:400 12px system-ui;color:#898781;margin-top:1px">Jeu. 30 juillet · 5 000 sur 8 000</div></div><span style="font:600 14px system-ui;color:#fab219">+ 5 000 F</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px"><div><div style="font:600 14px system-ui;color:#0b0b0b">Versement · Wave</div><div style="font:400 12px system-ui;color:#898781;margin-top:1px">Lun. 27 juillet</div></div><span style="font:600 14px system-ui;color:#0ca30c">+ 8 000 F</span></div>
+    </div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Accueil — état vide (aucun versement)</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="display:flex;align-items:center;gap:6px;color:#52514e"><span style="font-size:11px">4G</span><span style="display:block;width:20px;height:10px;border:1px solid #898781;border-radius:2px;padding:1px"><span style="display:block;width:70%;height:100%;background:#52514e;border-radius:1px"></span></span></span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div><div style="font:700 19px system-ui;color:#0b0b0b;letter-spacing:-.2px">Moussa Diop</div><div style="font:400 13px system-ui;color:#898781;margin-top:2px">Dacia Logan · DK 4821 AB</div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:18px">
+      <div style="font:500 13px system-ui;color:#52514e">Solde du chauffeur</div>
+      <div style="font:700 46px/1.05 system-ui;letter-spacing:-1.8px;color:#898781;margin:6px 0 10px">0 F</div>
+      <div style="font:400 13px/1.4 system-ui;color:#52514e">Aucun versement enregistré pour l'instant. Le suivi commence au premier versement.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Encaissé du mois</div><div style="font:700 22px system-ui;color:#c9c8c2;letter-spacing:-.6px;margin-top:5px">—</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px"><div style="font:500 12px system-ui;color:#52514e">Net du mois</div><div style="font:700 22px system-ui;color:#c9c8c2;letter-spacing:-.6px;margin-top:5px">—</div></div>
+    </div>
+    <div style="min-height:52px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#fff">Enregistrer le premier versement</div>
+    <div style="font:600 14px system-ui;color:#0b0b0b;margin-top:2px">Derniers mouvements</div>
+    <div style="background:#fff;flex:none;border:1px dashed #d6d5cf;border-radius:12px;flex:none;padding:26px 18px;text-align:center"><div style="font:600 14px system-ui;color:#52514e">Rien à afficher</div><div style="font:400 13px/1.4 system-ui;color:#898781;margin-top:4px">Les versements et dépenses apparaîtront ici, du plus récent au plus ancien.</div></div>
+    <div style="background:#eaf2fd;border:1px solid #2a78d626;border-radius:12px;flex:none;padding:12px 14px"><div style="font:600 13px system-ui;color:#0b0b0b">Vérifiez le contrat</div><div style="font:400 12px/1.4 system-ui;color:#52514e;margin-top:3px">8 000 F par jour travaillé, du lundi au samedi.</div></div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Accueil + calendrier — chargement</div>
+<div style="display:flex;gap:16px">
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="display:flex;align-items:center;gap:6px;color:#52514e"><span style="font-size:11px">4G</span><span style="display:block;width:20px;height:10px;border:1px solid #898781;border-radius:2px;padding:1px"><span style="display:block;width:70%;height:100%;background:#52514e;border-radius:1px"></span></span></span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div><div style="width:150px;height:20px;border-radius:6px;background:#e6e5df"></div><div style="width:110px;height:13px;border-radius:5px;background:#eceae5;margin-top:7px"></div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:18px"><div style="width:120px;height:13px;border-radius:5px;background:#eceae5"></div><div style="width:190px;height:44px;border-radius:8px;background:#e6e5df;margin:10px 0 12px"></div><div style="width:150px;height:28px;border-radius:999px;background:#eceae5"></div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px 16px"><div style="width:130px;height:13px;border-radius:5px;background:#eceae5"></div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:11px"><div style="height:34px;border-radius:8px;background:#eceae5"></div><div style="height:34px;border-radius:8px;background:#eceae5"></div><div style="height:34px;border-radius:8px;background:#eceae5"></div><div style="height:34px;border-radius:8px;background:#eceae5"></div><div style="height:34px;border-radius:8px;background:#eceae5"></div><div style="height:34px;border-radius:8px;background:#eceae5"></div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none"><div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px;height:66px"><div style="width:90px;height:12px;border-radius:5px;background:#eceae5"></div><div style="width:110px;height:22px;border-radius:6px;background:#e6e5df;margin-top:8px"></div></div><div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px;height:66px"><div style="width:70px;height:12px;border-radius:5px;background:#eceae5"></div><div style="width:100px;height:22px;border-radius:6px;background:#e6e5df;margin-top:8px"></div></div></div>
+    <div style="min-height:52px;background:#e6e5df;border-radius:12px"></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden"><div style="display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #f0efe9"><div><div style="width:130px;height:14px;border-radius:5px;background:#eceae5"></div><div style="width:80px;height:11px;border-radius:5px;background:#f2f1ec;margin-top:6px"></div></div><div style="width:64px;height:14px;border-radius:5px;background:#eceae5"></div></div><div style="display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #f0efe9"><div><div style="width:110px;height:14px;border-radius:5px;background:#eceae5"></div><div style="width:80px;height:11px;border-radius:5px;background:#f2f1ec;margin-top:6px"></div></div><div style="width:64px;height:14px;border-radius:5px;background:#eceae5"></div></div><div style="display:flex;justify-content:space-between;padding:14px"><div><div style="width:120px;height:14px;border-radius:5px;background:#eceae5"></div><div style="width:80px;height:11px;border-radius:5px;background:#f2f1ec;margin-top:6px"></div></div><div style="width:64px;height:14px;border-radius:5px;background:#eceae5"></div></div></div>
+    <div style="text-align:center;font:500 12px system-ui;color:#898781">Mise à jour…</div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;padding:4px 16px 0;display:flex;flex-direction:column;gap:14px">
+    <div style="width:140px;height:22px;border-radius:6px;background:#e6e5df"></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px"><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px"><div style="aspect-ratio:1;border-radius:8px;background:#f2f1ec"></div><div style="aspect-ratio:1;border-radius:8px;background:#f2f1ec"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div><div style="aspect-ratio:1;border-radius:8px;background:#eceae5"></div></div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none"><div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px;height:62px"><div style="width:50px;height:11px;border-radius:5px;background:#f2f1ec"></div><div style="width:70px;height:18px;border-radius:5px;background:#eceae5;margin-top:8px"></div></div><div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px;height:62px"><div style="width:40px;height:11px;border-radius:5px;background:#f2f1ec"></div><div style="width:70px;height:18px;border-radius:5px;background:#eceae5;margin-top:8px"></div></div><div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px;height:62px"><div style="width:60px;height:11px;border-radius:5px;background:#f2f1ec"></div><div style="width:60px;height:18px;border-radius:5px;background:#eceae5;margin-top:8px"></div></div></div>
+    <div style="text-align:center;font:500 12px system-ui;color:#898781">Chargement du mois…</div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div>
+</div></div>
+
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Calendrier — juillet</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e6e5df;border-radius:10px;font:600 16px system-ui;color:#52514e">‹</div>
+      <div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px">Juillet 2026</div>
+      <div style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e6e5df;border-radius:10px;font:600 16px system-ui;color:#c9c8c2">›</div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:12px">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px">
+        <div style="text-align:center;font:600 11px system-ui;color:#898781">L</div><div style="text-align:center;font:600 11px system-ui;color:#898781">M</div><div style="text-align:center;font:600 11px system-ui;color:#898781">M</div><div style="text-align:center;font:600 11px system-ui;color:#898781">J</div><div style="text-align:center;font:600 11px system-ui;color:#898781">V</div><div style="text-align:center;font:600 11px system-ui;color:#898781">S</div><div style="text-align:center;font:600 11px system-ui;color:#c9c8c2">D</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+        <div></div><div></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">1</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">2</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">3</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">4</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#898781">5</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">6</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">7</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">8</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">9</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">10</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">11</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#898781">12</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#898781">13</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">14</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#fdf3dd;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">15</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">16</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">17</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">18</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#898781">19</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">20</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#fbeaea;display:flex;align-items:center;justify-content:center;font:700 14px system-ui;color:#d03b3b">21</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">22</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">23</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">24</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">25</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#898781">26</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">27</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#fbeaea;display:flex;align-items:center;justify-content:center;font:700 14px system-ui;color:#d03b3b">28</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#fbeaea;display:flex;align-items:center;justify-content:center;font:700 14px system-ui;color:#d03b3b">29</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0ca30c">30</div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#fff;border:1.5px solid #2a78d6;display:flex;align-items:center;justify-content:center;font:700 14px system-ui;color:#2a78d6">31</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:13px 14px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:#e7f6e7;border:1px solid #0ca30c40"></span><span style="font:500 12px system-ui;color:#52514e">Versé</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:#fdf3dd;border:1px solid #fab21966"></span><span style="font:500 12px system-ui;color:#52514e">Partiel</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:#fbeaea;border:1px solid #d03b3b40"></span><span style="font:500 12px system-ui;color:#52514e">Non versé</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></span><span style="font:500 12px system-ui;color:#52514e">Jour non dû</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:#fff;border:1px solid #d6d5cf"></span><span style="font:500 12px system-ui;color:#52514e">À venir</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px"><div style="font:500 12px system-ui;color:#52514e">Attendu</div><div style="font:700 17px system-ui;color:#0b0b0b;letter-spacing:-.4px;margin-top:4px">200 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px"><div style="font:500 12px system-ui;color:#52514e">Reçu</div><div style="font:700 17px system-ui;color:#0ca30c;letter-spacing:-.4px;margin-top:4px">173 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px"><div style="font:500 12px system-ui;color:#52514e">Manquant</div><div style="font:700 17px system-ui;color:#d03b3b;letter-spacing:-.4px;margin-top:4px">27 000 F</div></div>
+    </div>
+    <div style="font:400 12px/1.4 system-ui;color:#898781">Touchez un jour pour voir le détail ou enregistrer un versement.</div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Calendrier — feuille de détail d'un jour</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px;position:relative">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px">Juillet 2026</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:12px">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+        <div></div><div></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#fdf3dd"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#fbeaea"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#fbeaea;outline:2.5px solid #0b0b0b;outline-offset:1px;display:flex;align-items:center;justify-content:center;font:700 14px system-ui;color:#d03b3b">28</div><div style="aspect-ratio:1;border-radius:9px;background:#fbeaea"></div><div style="aspect-ratio:1;border-radius:9px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:9px;background:#fff;border:1.5px solid #2a78d6"></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;inset:0;background:rgba(11,11,11,.32);border-radius:22px"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 22px 22px;border-top:1px solid #e6e5df;padding:10px 18px 22px;display:flex;flex-direction:column;gap:14px">
+    <div style="width:38px;height:4px;border-radius:2px;background:#e6e5df;margin:0 auto"></div>
+    <div><div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px">Mardi 28 juillet</div><div style="display:inline-flex;align-items:center;gap:7px;background:#fbeaea;border-radius:999px;padding:6px 11px;margin-top:8px"><span style="width:8px;height:8px;border-radius:50%;background:#d03b3b"></span><span style="font:600 13px system-ui;color:#d03b3b">Non versé</span></div></div>
+    <div style="border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #f0efe9"><span style="font:500 13px system-ui;color:#52514e">Attendu ce jour</span><span style="font:600 14px system-ui;color:#0b0b0b">{{ montantJour }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #f0efe9"><span style="font:500 13px system-ui;color:#52514e">Reçu</span><span style="font:600 14px system-ui;color:#d03b3b">0 F</span></div>
+      <div style="display:flex;justify-content:space-between;padding:12px 14px"><span style="font:500 13px system-ui;color:#52514e">Mode habituel</span><span style="font:600 14px system-ui;color:#0b0b0b">Wave</span></div>
+    </div>
+    <div style="min-height:52px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#fff">{{ boutonVersement }}</div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Marquer jour non dû</div>
+      <div style="flex:1;min-height:46px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 14px system-ui;color:#0b0b0b">Montant partiel</div>
+    </div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1g"><div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>Les cinq états de jour, côte à côte</div>
+<div class="dv-card" style="width:390px;padding:20px;background:#fff">
+  <div style="font:700 16px system-ui;color:#0b0b0b;margin-bottom:4px">États de jour</div>
+  <div style="font:400 12px/1.45 system-ui;color:#52514e;margin-bottom:16px">Les hachures grises à 45° ne portent aucune valeur de paiement : un jour non dû ne peut pas être lu comme versé ou non versé.</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:100%;aspect-ratio:1;border-radius:10px;background:#e7f6e7;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#0ca30c">14</div><span style="font:600 11px/1.2 system-ui;color:#0b0b0b;text-align:center">Versé</span><span style="font:400 10px/1.2 system-ui;color:#898781;text-align:center">8 000 F</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:100%;aspect-ratio:1;border-radius:10px;background:#fdf3dd;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#0b0b0b">15</div><span style="font:600 11px/1.2 system-ui;color:#0b0b0b;text-align:center">Partiel</span><span style="font:400 10px/1.2 system-ui;color:#898781;text-align:center">5 000 F</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:100%;aspect-ratio:1;border-radius:10px;background:#fbeaea;display:flex;align-items:center;justify-content:center;font:700 16px system-ui;color:#d03b3b">28</div><span style="font:600 11px/1.2 system-ui;color:#0b0b0b;text-align:center">Non versé</span><span style="font:400 10px/1.2 system-ui;color:#898781;text-align:center">0 F</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:100%;aspect-ratio:1;border-radius:10px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px);display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#898781">26</div><span style="font:600 11px/1.2 system-ui;color:#0b0b0b;text-align:center">Non dû</span><span style="font:400 10px/1.2 system-ui;color:#898781;text-align:center">dimanche</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:100%;aspect-ratio:1;border-radius:10px;background:#fff;border:1.5px solid #d6d5cf;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#52514e">3</div><span style="font:600 11px/1.2 system-ui;color:#0b0b0b;text-align:center">À venir</span><span style="font:400 10px/1.2 system-ui;color:#898781;text-align:center">—</span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #e6e5df"><div style="width:38px;height:38px;border-radius:10px;background:#fff;border:1.5px solid #2a78d6;display:flex;align-items:center;justify-content:center;font:700 15px system-ui;color:#2a78d6">31</div><span style="font:500 12px system-ui;color:#52514e">Aujourd'hui : contour bleu, quel que soit l'état</span></div>
+</div></div>
+
+<div class="dv-opt" id="1h"><div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>Saisie d'un versement</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px 12px"><span style="min-height:44px;display:flex;align-items:center;font:600 15px system-ui;color:#2a78d6">Annuler</span><span style="font:600 16px system-ui;color:#0b0b0b">Versement</span><span style="width:60px"></span></div>
+  <div style="flex:1;padding:0 16px;display:flex;flex-direction:column;gap:14px">
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:18px">
+      <div style="font:500 13px system-ui;color:#52514e">Montant du jour</div>
+      <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px"><span style="font:700 40px system-ui;letter-spacing:-1.4px;color:#0b0b0b">{{ montantJour }}</span></div>
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#f4f4f1;border-radius:8px;padding:7px 10px;margin-top:10px"><span style="width:9px;height:9px;border:1.5px solid #898781;border-radius:2px"></span><span style="font:500 12px system-ui;color:#52514e">Fixé par le contrat · non modifiable</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;min-height:56px;border-bottom:1px solid #f0efe9"><span style="font:500 14px system-ui;color:#52514e">Date</span><span style="display:flex;align-items:center;gap:8px"><span style="font:600 15px system-ui;color:#0b0b0b">Aujourd'hui · ven. 31 juil.</span><span style="font:600 15px system-ui;color:#c9c8c2">›</span></span></div>
+      <div style="padding:14px"><div style="font:500 14px system-ui;color:#52514e;margin-bottom:10px">Mode de paiement</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none">
+          <div style="min-height:48px;border-radius:10px;background:#eaf2fd;border:1.5px solid #2a78d6;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#2a78d6">Wave</div>
+          <div style="min-height:48px;border-radius:10px;background:#fff;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#0b0b0b">Espèces</div>
+          <div style="min-height:48px;border-radius:10px;background:#fff;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#0b0b0b">Orange Money</div>
+          <div style="min-height:48px;border-radius:10px;background:#fff;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#0b0b0b">Virement</div>
+        </div>
+        <div style="font:400 12px system-ui;color:#898781;margin-top:9px">Wave : votre dernier mode utilisé.</div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px"><div style="font:500 14px system-ui;color:#52514e">Note (facultatif)</div><div style="font:400 15px system-ui;color:#c9c8c2;margin-top:8px">Ajouter une précision…</div></div>
+    <div style="background:#eaf2fd;border:1px solid #2a78d626;border-radius:12px;flex:none;padding:12px 14px;display:flex;justify-content:space-between"><span style="font:500 13px system-ui;color:#52514e">Solde après enregistrement</span><span style="font:600 13px system-ui;color:#0b0b0b">19 000 F</span></div>
+  </div>
+  <div style="padding:14px 16px 22px;background:#f4f4f1"><div style="min-height:54px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 17px system-ui;color:#fff">{{ boutonVersement }}</div></div>
+</div></div>
+
+<div class="dv-opt" id="1i"><div class="dv-olabel"><a class="dv-oid" href="#1i">1i</a>Dépenses</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end"><div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px">Dépenses</div><div style="font:600 12px system-ui;color:#52514e;padding:7px 10px;background:#fff;border:1px solid #e6e5df;border-radius:8px;min-height:34px;display:flex;align-items:center">Juillet</div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:16px"><div style="font:500 13px system-ui;color:#52514e">Total du mois</div><div style="font:700 34px system-ui;letter-spacing:-1.2px;color:#0b0b0b;margin-top:4px">48 000 F</div><div style="font:400 12px system-ui;color:#898781;margin-top:4px">3 dépenses · moyenne 6 mois : 30 000 F</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:600 13px system-ui;color:#0b0b0b">Entretien</div><div style="font:600 15px system-ui;color:#52514e;margin-top:3px">22 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:600 13px system-ui;color:#0b0b0b">Assurance</div><div style="font:600 15px system-ui;color:#c9c8c2;margin-top:3px">0 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:600 13px system-ui;color:#0b0b0b">Contrôle technique</div><div style="font:600 15px system-ui;color:#52514e;margin-top:3px">15 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:600 13px system-ui;color:#0b0b0b">Divers</div><div style="font:600 15px system-ui;color:#52514e;margin-top:3px">11 000 F</div></div>
+    </div>
+    <div style="min-height:52px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 16px system-ui;color:#fff">Ajouter une dépense</div>
+    <div style="font:600 14px system-ui;color:#0b0b0b;margin-top:2px">Ce mois-ci</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #f0efe9"><div><div style="font:600 14px system-ui;color:#0b0b0b">Vidange + filtres</div><div style="font:400 12px system-ui;color:#898781;margin-top:2px">Entretien · mer. 29 juil.</div></div><span style="font:600 14px system-ui;color:#0b0b0b">22 000 F</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #f0efe9"><div><div style="font:600 14px system-ui;color:#0b0b0b">Visite annuelle</div><div style="font:400 12px system-ui;color:#898781;margin-top:2px">Contrôle technique · lun. 20 juil.</div></div><span style="font:600 14px system-ui;color:#0b0b0b">15 000 F</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 14px"><div><div style="font:600 14px system-ui;color:#0b0b0b">Lavage et petits frais</div><div style="font:400 12px system-ui;color:#898781;margin-top:2px">Divers · jeu. 9 juil.</div></div><span style="font:600 14px system-ui;color:#0b0b0b">11 000 F</span></div>
+    </div>
+    <div style="background:#fff;flex:none;border:1px dashed #d6d5cf;border-radius:12px;flex:none;padding:14px;text-align:center;font:400 12px/1.4 system-ui;color:#898781">Juin : aucune dépense enregistrée</div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1j"><div class="dv-olabel"><a class="dv-oid" href="#1j">1j</a>Photos du véhicule — parcours guidé</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px"><span style="min-height:44px;display:flex;align-items:center;font:600 15px system-ui;color:#2a78d6">Fermer</span><span style="font:600 16px system-ui;color:#0b0b0b">Photos · 3 sur 6</span><span style="width:56px"></span></div>
+  <div style="flex:1;padding:0 16px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:4px">
+      <div style="flex:1;height:4px;border-radius:2px;background:#0ca30c"></div><div style="flex:1;height:4px;border-radius:2px;background:#0ca30c"></div><div style="flex:1;height:4px;border-radius:2px;background:#2a78d6"></div><div style="flex:1;height:4px;border-radius:2px;background:#e6e5df"></div><div style="flex:1;height:4px;border-radius:2px;background:#e6e5df"></div><div style="flex:1;height:4px;border-radius:2px;background:#e6e5df"></div>
+    </div>
+    <div><div style="font:700 22px system-ui;color:#0b0b0b;letter-spacing:-.4px">Côté gauche</div><div style="font:400 13px system-ui;color:#52514e;margin-top:3px">Reculez de trois pas, la voiture entière dans le cadre.</div></div>
+    <div style="aspect-ratio:16/10;border-radius:14px;flex:none;background:repeating-linear-gradient(45deg,#eceae5 0 6px,#e2e1db 6px 12px);border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center"><span style="font:500 12px ui-monospace,Menlo,monospace;color:#898781;background:#fff;padding:6px 10px;border-radius:6px;border:1px solid #e6e5df">photo côté gauche</span></div>
+    <div style="min-height:54px;background:#2a78d6;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font:600 17px system-ui;color:#fff">Prendre la photo</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;flex:none"><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:repeating-linear-gradient(45deg,#e2e1db 0 5px,#d6d5cf 5px 10px);border:1px solid #0ca30c66"></div><span style="font:600 9.5px/1.15 system-ui;color:#0ca30c;text-align:center">Avant</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:repeating-linear-gradient(45deg,#e2e1db 0 5px,#d6d5cf 5px 10px);border:1px solid #0ca30c66"></div><span style="font:600 9.5px/1.15 system-ui;color:#0ca30c;text-align:center">Arrière</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:#eaf2fd;border:1.5px solid #2a78d6"></div><span style="font:600 9.5px/1.15 system-ui;color:#2a78d6;text-align:center">Côté<br>gauche</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:#fff;border:1px dashed #d6d5cf"></div><span style="font:600 9.5px/1.15 system-ui;color:#898781;text-align:center">Côté<br>droit</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:#fff;border:1px dashed #d6d5cf"></div><span style="font:600 9.5px/1.15 system-ui;color:#898781;text-align:center">Intérieur</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;aspect-ratio:1;border-radius:8px;background:#fff;border:1px dashed #d6d5cf"></div><span style="font:600 9.5px/1.15 system-ui;color:#898781;text-align:center">Tableau<br>de bord</span></div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 14px system-ui;color:#52514e">Kilométrage</span><span style="font:600 15px system-ui;color:#c9c8c2">— km</span></div>
+      <div><div style="font:500 14px system-ui;color:#52514e;margin-bottom:8px">État général</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px"><div style="min-height:44px;border-radius:10px;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#52514e">1</div><div style="min-height:44px;border-radius:10px;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#52514e">2</div><div style="min-height:44px;border-radius:10px;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#52514e">3</div><div style="min-height:44px;border-radius:10px;background:#eaf2fd;border:1.5px solid #2a78d6;display:flex;align-items:center;justify-content:center;font:700 15px system-ui;color:#2a78d6">4</div><div style="min-height:44px;border-radius:10px;border:1px solid #e6e5df;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#52514e">5</div></div></div>
+    </div>
+  </div>
+  <div style="padding:12px 16px 22px"><div style="min-height:48px;background:#fff;border:1px solid #e6e5df;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px system-ui;color:#898781">Terminer le contrôle (3 photos restantes)</div></div>
+</div></div>
+
+<div class="dv-opt" id="1k"><div class="dv-olabel"><a class="dv-oid" href="#1k">1k</a>Rentabilité</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;padding:4px 16px 8px;display:flex;flex-direction:column;gap:10px">
+    <div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px">Rentabilité</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:16px"><div style="font:500 13px system-ui;color:#52514e">Net sur 6 mois</div><div style="font:700 34px system-ui;letter-spacing:-1.2px;color:#0b0b0b;margin-top:4px">742 000 F</div><div style="font:400 12px system-ui;color:#898781;margin-top:4px">1 093 000 F encaissés · 351 000 F de dépenses</div></div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:16px 14px 12px">
+      <div style="display:flex;gap:16px;margin-bottom:14px"><span style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:3px;background:#2a78d6"></span><span style="font:500 12px system-ui;color:#52514e">Encaissé</span></span><span style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:3px;background:#eb6834"></span><span style="font:500 12px system-ui;color:#52514e">Dépenses</span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;height:120px;border-bottom:1px solid #e6e5df;padding:0 2px">
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:92px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:17px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:106px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:13px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:101px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:31px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:97px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:10px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:110px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:7px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+        <div style="display:flex;align-items:flex-end;gap:3px"><div style="width:13px;height:95px;background:#2a78d6;border-radius:3px 3px 0 0"></div><div style="width:13px;height:26px;background:#eb6834;border-radius:3px 3px 0 0"></div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px"><span style="font:500 11px system-ui;color:#898781;width:32px;text-align:center">Fév</span><span style="font:500 11px system-ui;color:#898781;width:32px;text-align:center">Mars</span><span style="font:500 11px system-ui;color:#898781;width:32px;text-align:center">Avr</span><span style="font:500 11px system-ui;color:#898781;width:32px;text-align:center">Mai</span><span style="font:500 11px system-ui;color:#898781;width:32px;text-align:center">Juin</span><span style="font:600 11px system-ui;color:#0b0b0b;width:32px;text-align:center">Juil</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:16px">
+      <div style="font:600 14px system-ui;color:#0b0b0b;margin-bottom:12px">Dépenses par catégorie · 6 mois</div>
+      <div style="display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:14px"><div style="width:41%;background:#eb6834"></div><div style="width:28%;background:#f09367"></div><div style="width:19%;background:#f6bfa4"></div><div style="width:12%;background:#e6e5df"></div></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:3px;background:#eb6834"></span><span style="font:500 13px system-ui;color:#0b0b0b">Entretien</span></span><span style="font:600 13px system-ui;color:#52514e">144 000 F · 41 %</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:3px;background:#f09367"></span><span style="font:500 13px system-ui;color:#0b0b0b">Assurance</span></span><span style="font:600 13px system-ui;color:#52514e">98 000 F · 28 %</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:3px;background:#f6bfa4"></span><span style="font:500 13px system-ui;color:#0b0b0b">Contrôle technique</span></span><span style="font:600 13px system-ui;color:#52514e">67 000 F · 19 %</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:3px;background:#e6e5df"></span><span style="font:500 13px system-ui;color:#0b0b0b">Divers</span></span><span style="font:600 13px system-ui;color:#52514e">42 000 F · 12 %</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1l"><div class="dv-olabel"><a class="dv-oid" href="#1l">1l</a>Réglages</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="flex:1;overflow:hidden;padding:4px 16px 6px;display:flex;flex-direction:column;gap:8px">
+    <div style="font:700 20px system-ui;color:#0b0b0b;letter-spacing:-.3px;margin-bottom:2px">Réglages · Moussa Diop</div>
+    <div style="font:600 12px system-ui;color:#898781;text-transform:uppercase;letter-spacing:.4px">Contrat</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px;border-bottom:1px solid #f0efe9"><span style="font:500 14px system-ui;color:#52514e">Montant par jour</span><span style="font:600 15px system-ui;color:#0b0b0b">{{ montantJour }}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px"><span style="font:500 14px system-ui;color:#52514e">Jours dus</span><span style="font:600 15px system-ui;color:#0b0b0b">Lundi au samedi</span></div>
+    </div>
+    <div style="font:600 12px system-ui;color:#898781;text-transform:uppercase;letter-spacing:.4px;margin-top:4px">Comptes de réception</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px;border-bottom:1px solid #f0efe9"><span style="font:500 14px system-ui;color:#52514e">Wave</span><span style="font:600 15px system-ui;color:#0b0b0b">77 812 44 09</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px"><span style="font:500 14px system-ui;color:#52514e">Orange Money</span><span style="font:600 15px system-ui;color:#0b0b0b">78 305 11 62</span></div>
+      
+    </div>
+    <div style="font:600 12px system-ui;color:#898781;text-transform:uppercase;letter-spacing:.4px;margin-top:4px">Lien de consultation</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="padding:13px 14px;border-bottom:1px solid #f0efe9"><div style="font:500 13px ui-monospace,Menlo,monospace;color:#2a78d6">woto.sn/m/4f2a91</div><div style="font:400 12px system-ui;color:#898781;margin-top:3px">Partagé sur WhatsApp le 12 juillet</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px;border-bottom:1px solid #f0efe9"><span style="font:500 14px system-ui;color:#52514e">Lien actif</span><span style="width:46px;height:28px;border-radius:14px;background:#2a78d6;padding:3px;display:flex;justify-content:flex-end"><span style="width:22px;height:22px;border-radius:50%;background:#fff"></span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px;border-bottom:1px solid #f0efe9"><span style="font:500 14px system-ui;color:#52514e">Afficher les montants</span><span style="width:46px;height:28px;border-radius:14px;background:#2a78d6;padding:3px;display:flex;justify-content:flex-end"><span style="width:22px;height:22px;border-radius:50%;background:#fff"></span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px"><span style="font:500 14px system-ui;color:#52514e">Afficher les dépenses</span><span style="width:46px;height:28px;border-radius:14px;background:#e6e5df;padding:3px;display:flex;justify-content:flex-start"><span style="width:22px;height:22px;border-radius:50%;background:#fff"></span></span></div>
+    </div>
+    <div style="font:600 12px system-ui;color:#898781;text-transform:uppercase;letter-spacing:.4px;margin-top:4px">Échéances</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;min-height:44px"><span style="font:500 14px system-ui;color:#52514e">Assurance · contrôle technique</span><span style="display:flex;align-items:center;gap:8px"><span style="font:600 15px system-ui;color:#d03b3b">12 août</span><span style="font:600 15px system-ui;color:#c9c8c2">›</span></span></div>
+    </div>
+  </div>
+  <div style="display:flex;background:#fff;border-top:1px solid #e6e5df;padding:8px 0 14px;flex:none">
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Accueil</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Calendrier</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:transparent"></span><span style="font:600 11px system-ui;color:#898781">Dépenses</span></div>
+    <div style="flex:1;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#2a78d6"></span><span style="font:600 11px system-ui;color:#2a78d6">Réglages</span></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1m"><div class="dv-olabel"><a class="dv-oid" href="#1m">1m</a>Page publique — lecture seule (WhatsApp)</div>
+<div class="dv-card" style="width:390px;min-height:844px;background:#f4f4f1;display:flex;flex-direction:column;border-radius:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;height:44px;padding:0 20px;font:600 12px system-ui;color:#0b0b0b;flex:none"><span>9:41</span><span style="font-size:11px;color:#52514e">4G</span></div>
+  <div style="padding:0 16px 10px;border-bottom:1px solid #e6e5df"><div style="font:600 13px system-ui;color:#898781">Woto · consultation</div><div style="font:400 12px system-ui;color:#898781;margin-top:2px">Lecture seule · mis à jour il y a 2 h</div></div>
+  <div style="flex:1;overflow:hidden;padding:14px 16px 8px;display:flex;flex-direction:column;gap:12px">
+    <div><div style="font:700 19px system-ui;color:#0b0b0b">Moussa Diop</div><div style="font:400 13px system-ui;color:#898781;margin-top:2px">Dacia Logan · DK 4821 AB · juillet 2026</div></div>
+    <sc-if value="{{ montantsPublics }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:16px">
+      <div style="font:500 13px system-ui;color:#52514e">Solde</div>
+      <div style="font:700 40px/1.05 system-ui;letter-spacing:-1.5px;color:#d03b3b;margin:5px 0 9px">{{ soldeDu }}</div>
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#fbeaea;border-radius:999px;padding:6px 11px"><span style="width:8px;height:8px;border-radius:50%;background:#d03b3b"></span><span style="font:600 13px system-ui;color:#d03b3b">{{ nbJours }} jours non versés</span></div>
+    </div>
+    </sc-if>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:14px;flex:none;padding:14px">
+      <div style="font:600 14px system-ui;color:#0b0b0b;margin-bottom:10px">Juillet</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px">
+        <div></div><div></div>
+        <div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:7px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#fdf3dd"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#fbeaea"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></div>
+        <div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#fbeaea"></div><div style="aspect-ratio:1;border-radius:7px;background:#fbeaea"></div><div style="aspect-ratio:1;border-radius:7px;background:#e7f6e7"></div><div style="aspect-ratio:1;border-radius:7px;background:#fff;border:1px solid #d6d5cf"></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:12px">
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#e7f6e7;border:1px solid #0ca30c40"></span><span style="font:500 11px system-ui;color:#52514e">Versé</span></span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#fdf3dd;border:1px solid #fab21966"></span><span style="font:500 11px system-ui;color:#52514e">Partiel</span></span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#fbeaea;border:1px solid #d03b3b40"></span><span style="font:500 11px system-ui;color:#52514e">Non versé</span></span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:repeating-linear-gradient(45deg,#eceae5 0 3px,#d3d2cb 3px 6px)"></span><span style="font:500 11px system-ui;color:#52514e">Non dû</span></span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none">
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:500 12px system-ui;color:#52514e">Attendu</div><div style="font:700 18px system-ui;color:#0b0b0b;letter-spacing:-.4px;margin-top:4px">200 000 F</div></div>
+      <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;padding:12px 13px"><div style="font:500 12px system-ui;color:#52514e">Reçu</div><div style="font:700 18px system-ui;color:#0ca30c;letter-spacing:-.4px;margin-top:4px">173 000 F</div></div>
+    </div>
+    <div style="font:600 13px system-ui;color:#0b0b0b;margin-top:2px">Derniers versements</div>
+    <div style="background:#fff;border:1px solid #e6e5df;border-radius:12px;flex:none;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;padding:11px 14px;border-bottom:1px solid #f0efe9"><span style="font:500 13px system-ui;color:#0b0b0b">Jeu. 30 juillet · espèces</span><span style="font:600 13px system-ui;color:#fab219">5 000 F</span></div>
+      <div style="display:flex;justify-content:space-between;padding:11px 14px"><span style="font:500 13px system-ui;color:#0b0b0b">Lun. 27 juillet · Wave</span><span style="font:600 13px system-ui;color:#0ca30c">8 000 F</span></div>
+      
+    </div>
+  </div>
+  <div style="padding:12px 16px 20px;text-align:center;font:400 11px/1.4 system-ui;color:#898781">Page partagée par le propriétaire du véhicule. Aucune modification possible depuis ce lien.</div>
+</div></div>
+
+</div>
+<p class="dv-next">Écrans suivants juste en dessous : calendrier, feuille de jour, saisie, dépenses, photos, rentabilité, réglages, page publique.</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;montantJour&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8000,&quot;tsType&quot;:&quot;number&quot;,&quot;unit&quot;:&quot;F&quot;,&quot;min&quot;:1000,&quot;max&quot;:25000,&quot;step&quot;:500,&quot;section&quot;:&quot;Contrat&quot;},&quot;joursNonVerses&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;max&quot;:10,&quot;section&quot;:&quot;Contrat&quot;},&quot;afficherMontantsPublic&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Lien public&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const f = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const mj = this.props.montantJour ?? 8000;
+    const nb = this.props.joursNonVerses ?? 3;
+    return {
+      montantJour: f(mj) + ' F',
+      soldeDu: f(mj * nb + 3000) + ' F',
+      nbJours: nb,
+      boutonVersement: 'Enregistrer ' + f(mj) + ' F',
+      montantsPublics: this.props.afficherMontantsPublic ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

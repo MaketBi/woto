@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Suivi Voiture — Maquette V2</title>
+<style>
+:root{
+  --surface:#ffffff;
+  --plane:#f4f4f1;
+  --card:#ffffff;
+  --ink:#0b0b0b;
+  --ink-2:#52514e;
+  --ink-3:#898781;
+  --line:#e6e5df;
+  --brand:#2a78d6;
+  --brand-soft:#eaf2fd;
+  --s1:#2a78d6;
+  --s2:#eb6834;
+  --good:#0ca30c;
+  --good-ink:#046b04;
+  --good-soft:#e7f6e7;
+  --warn:#fab219;
+  --warn-soft:#fdf3dd;
+  --warn-ink:#8a5c00;
+  --crit:#d03b3b;
+  --crit-soft:#fbeaea;
+  --crit-ink:#9c2020;
+  --radius:16px;
+  --shadow:0 1px 2px rgba(11,11,11,.05),0 6px 20px rgba(11,11,11,.06);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--plane);color:var(--ink);display:flex;align-items:center;justify-content:center;min-height:100vh}
+
+#device{width:100%;max-width:412px;height:100vh;max-height:880px;background:var(--surface);position:relative;overflow:hidden;display:flex;flex-direction:column}
+@media(min-width:520px){
+  body{padding:24px}
+  #device{border-radius:36px;box-shadow:0 30px 70px rgba(11,11,11,.22),0 0 0 10px #17171a;height:860px}
+}
+
+.topbar{padding:14px 18px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);background:var(--surface);flex:0 0 auto}
+.plate{font-weight:700;font-size:14px;letter-spacing:.02em}
+.plate small{display:block;font-weight:500;font-size:12px;color:var(--ink-3);letter-spacing:0}
+.avatar{margin-left:auto;width:32px;height:32px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:12px;font-weight:700}
+.backbtn{border:0;background:none;font-size:22px;line-height:1;color:var(--ink);padding:0 6px 0 0;cursor:pointer;display:none}
+
+main{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:16px 16px 96px}
+.screen{display:none;animation:fade .18s ease}
+.screen.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+h2.title{font-size:19px;margin:2px 0 14px}
+.sub{font-size:13px;color:var(--ink-3);margin:-8px 0 16px}
+
+/* hero */
+.hero{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px;text-align:center;box-shadow:var(--shadow)}
+.hero .lbl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.hero .val{font-size:40px;font-weight:700;letter-spacing:-.03em;margin:6px 0 2px;line-height:1;font-variant-numeric:tabular-nums}
+.hero .val .cur{font-size:20px;font-weight:600;letter-spacing:0}
+.hero .val.late{color:var(--crit)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:99px;margin-top:8px}
+.pill.bad{background:var(--crit-soft);color:var(--crit-ink)}
+.hero .prog{height:8px;border-radius:99px;background:#eeede8;margin-top:16px;overflow:hidden;display:flex}
+.hero .prog i{display:block;height:100%;background:var(--brand);flex:0 0 auto;border-radius:99px}
+.hero .proglbl{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);margin-top:8px}
+.hero .proglbl b{color:var(--ink)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.tile .k{font-size:10.5px;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.tile .v{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-top:5px;font-variant-numeric:tabular-nums}
+.tile .v small{font-size:12px;font-weight:600;color:var(--ink-3)}
+.tile .d{font-size:12px;margin-top:3px;color:var(--ink-3)}
+.tile .d.up{color:var(--good-ink);font-weight:600}
+
+/* alerts */
+.alerts{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.alert{display:flex;gap:11px;align-items:center;padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:13.5px}
+.alert .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;font-size:14px}
+.alert.w .ic{background:var(--warn-soft)}
+.alert.c .ic{background:var(--crit-soft)}
+.alert b{display:block;font-size:13.5px}
+.alert span{font-size:12px;color:var(--ink-3)}
+.alert .go{margin-left:auto;color:var(--ink-3);font-size:18px}
+
+.sec{display:flex;align-items:baseline;margin:22px 0 10px}
+.sec h3{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin:0}
+.sec a{margin-left:auto;font-size:13px;color:var(--brand);text-decoration:none;font-weight:600;cursor:pointer}
+
+/* list */
+.list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;flex:0 0 auto;background:var(--plane)}
+.row .tx{min-width:0}
+.row .tx b{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tx span{font-size:12px;color:var(--ink-3)}
+.row .amt{margin-left:auto;font-weight:700;font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.amt.in{color:var(--good-ink)}
+.amt.out{color:var(--crit)}
+
+/* buttons */
+.actions{display:grid;gap:9px;margin-top:18px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:16px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:15.5px;font-weight:650;color:var(--ink);cursor:pointer;width:100%;font-family:inherit}
+.btn:active{transform:scale(.985)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 4px 14px rgba(42,120,214,.28)}
+.btn.lg{padding:18px;font-size:16.5px}
+.btn.ghost{background:var(--plane)}
+
+/* form */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12.5px;font-weight:650;color:var(--ink-2);margin-bottom:7px}
+.amountbox{background:var(--card);border:2px solid var(--brand);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center;gap:8px}
+.amountbox input{border:0;outline:0;font-size:36px;font-weight:700;letter-spacing:-.03em;width:100%;text-align:center;font-family:inherit;color:var(--ink);background:none;font-variant-numeric:tabular-nums}
+.amountbox .cur{font-size:19px;font-weight:600;color:var(--ink-3);flex:0 0 auto}
+.hint{font-size:12px;color:var(--ink-3);text-align:center;margin-top:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:10px 15px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink)}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.sm{padding:7px 12px;font-size:12.5px}
+input.txt{width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);font-size:15px;font-family:inherit;background:var(--card);color:var(--ink);outline:0}
+input.txt:focus{border-color:var(--brand)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer;font-family:inherit;color:var(--ink)}
+.cat.on{border-color:var(--brand);background:var(--brand-soft)}
+.cat .e{font-size:22px;display:block}
+.cat .n{font-size:12.5px;font-weight:600;margin-top:6px;display:block}
+
+/* ---------- CALENDRIER ---------- */
+.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.calhead b{font-size:16px}
+.calhead button{border:1px solid var(--line);background:var(--card);width:34px;height:34px;border-radius:10px;font-size:17px;cursor:pointer;color:var(--ink);font-family:inherit}
+.dow{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:5px}
+.dow span{text-align:center;font-size:10.5px;font-weight:700;color:var(--ink-3);text-transform:uppercase}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.day{
+  aspect-ratio:1;border-radius:11px;border:1px solid var(--line);background:var(--card);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  cursor:pointer;font-family:inherit;padding:0;position:relative;
+}
+.day .n{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1}
+.day .m{font-size:9px;line-height:1;font-weight:700}
+.day.empty{border:0;background:none;cursor:default}
+.day.paid{background:var(--good-soft);border-color:#bfe6bf}
+.day.paid .n{color:var(--good-ink)}
+.day.paid .m{color:var(--good)}
+.day.part{background:var(--warn-soft);border-color:#f2dda6}
+.day.part .n{color:var(--warn-ink)}
+.day.part .m{color:var(--warn-ink)}
+.day.miss{background:var(--crit-soft);border-color:#f0c4c4}
+.day.miss .n{color:var(--crit-ink)}
+.day.miss .m{color:var(--crit)}
+.day.off{background:repeating-linear-gradient(45deg,#f4f4f1,#f4f4f1 4px,#ebebe6 4px,#ebebe6 8px);border-color:var(--line)}
+.day.off .n{color:var(--ink-3)}
+.day.off .m{color:var(--ink-3)}
+.day.future .n{color:var(--ink-3)}
+.day.today{outline:2px solid var(--brand);outline-offset:1px}
+
+.legend2{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-top:14px;font-size:12px;color:var(--ink-2)}
+.legend2 span{display:flex;align-items:center;gap:7px}
+.legend2 i{width:13px;height:13px;border-radius:4px;flex:0 0 auto;border:1px solid var(--line)}
+.sum{display:flex;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}
+.sum div{flex:1;padding:13px 8px;text-align:center;border-right:1px solid var(--line)}
+.sum div:last-child{border-right:0}
+.sum .k{font-size:10px;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.sum .v{font-size:15px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.sum .v.miss{color:var(--crit)}
+
+/* sheet */
+.scrim{position:absolute;inset:0;background:rgba(11,11,11,.45);display:none;z-index:20}
+.scrim.on{display:block}
+.sheet{
+  position:absolute;left:0;right:0;bottom:0;background:var(--surface);z-index:21;
+  border-radius:22px 22px 0 0;padding:8px 18px calc(22px + env(safe-area-inset-bottom));
+  transform:translateY(100%);transition:transform .22s ease;max-height:82%;overflow-y:auto;
+}
+.sheet.on{transform:none}
+.grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:0 auto 14px}
+.sheet h4{margin:0 0 3px;font-size:17px}
+.sheet .sd{font-size:13px;color:var(--ink-3);margin:0 0 16px}
+
+/* chart */
+.chartcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px 10px}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink-2);margin:0 0 12px 2px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:-1px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:150px;padding:0 2px}
+.mon{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.pair{display:flex;gap:2px;align-items:flex-end;height:100%;width:100%;justify-content:center}
+.bar{width:12px;border-radius:4px 4px 0 0}
+.bar.a{background:var(--s1)}
+.bar.b{background:var(--s2)}
+.mon .lbl{font-size:11px;color:var(--ink-3);font-weight:600}
+.mon .net{font-size:10px;font-weight:700;color:var(--good-ink);font-variant-numeric:tabular-nums}
+
+.split{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.sline{display:flex;align-items:center;gap:10px;margin-bottom:11px;font-size:13.5px}
+.sline:last-child{margin-bottom:0}
+.sline .n{width:96px;color:var(--ink-2);flex:0 0 auto;font-size:13px}
+.sline .t{flex:1;height:9px;border-radius:99px;background:var(--plane);overflow:hidden}
+.sline .t i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.sline .v{width:64px;text-align:right;font-weight:650;font-variant-numeric:tabular-nums;font-size:12.5px}
+
+.link{display:flex;align-items:center;gap:8px;background:var(--plane);border:1px solid var(--line);border-radius:12px;padding:13px;font-size:12.5px;color:var(--ink-2);word-break:break-all}
+.member{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid var(--line)}
+.member:last-child{border-bottom:0}
+.member .av{width:36px;height:36px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:700;font-size:13px}
+.member b{display:block;font-size:14px}
+.member span{font-size:12px;color:var(--ink-3)}
+.tag{margin-left:auto;font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;background:var(--plane);color:var(--ink-2)}
+.tag.admin{background:var(--brand-soft);color:var(--brand)}
+
+.toggle{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid var(--line)}
+.toggle:last-child{border-bottom:0}
+.toggle b{font-size:14px;display:block}
+.toggle span{font-size:12px;color:var(--ink-3)}
+.sw{margin-left:auto;width:46px;height:27px;border-radius:99px;background:#dcdbd4;position:relative;cursor:pointer;flex:0 0 auto;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .15s}
+.sw.on{background:var(--good)}
+.sw.on::after{transform:translateX(19px)}
+
+nav{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:10}
+nav button{flex:1;border:0;background:none;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;color:var(--ink-3);font-size:10.5px;font-weight:600}
+nav button .e{font-size:19px;line-height:1}
+nav button.on{color:var(--brand)}
+nav button.fab .e{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:24px;margin-top:-14px;box-shadow:0 6px 16px rgba(42,120,214,.35)}
+nav button.fab{color:var(--brand)}
+
+.note{font-size:11.5px;color:var(--ink-3);text-align:center;margin-top:20px;line-height:1.5}
+.banner{background:var(--brand-soft);border:1px solid #cfe2fa;border-radius:12px;padding:12px 13px;font-size:12.5px;color:#1b4f8f;margin-bottom:14px;line-height:1.45}
+</style>
+</head>
+<body>
+<div id="device">
+
+  <div class="topbar">
+    <button class="backbtn" id="back">‹</button>
+    <div class="plate">DK-4821-AB<small>Peugeot 508 · Ass</small></div>
+    <div class="avatar">MD</div>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ ACCUEIL ============ -->
+    <section class="screen on" id="s-home">
+      <div class="hero">
+        <div class="lbl">Solde chauffeur</div>
+        <div class="val late">50 000 <span class="cur">F</span></div>
+        <div class="pill bad">● 3 jours non versés · 1 partiel</div>
+        <div class="prog"><i style="width:67%"></i></div>
+        <div class="proglbl"><span>Semaine : <b>30 000 F</b> reçus</span><span>sur <b>45 000 F</b> attendus</span></div>
+      </div>
+
+      <div class="tiles">
+        <div class="tile"><div class="k">Encaissé juillet</div><div class="v">280 000 <small>F</small></div><div class="d">19 versements</div></div>
+        <div class="tile"><div class="k">Net juillet</div><div class="v">+220 000 <small>F</small></div><div class="d up">↑ 14 % vs juin</div></div>
+      </div>
+
+      <div class="alerts">
+        <div class="alert c" data-go="s-plus"><div class="ic">🛡️</div><div><b>Assurance à renouveler</b><span>Dans 12 jours · 25 000 F</span></div><div class="go">›</div></div>
+        <div class="alert w" data-go="s-photos"><div class="ic">📷</div><div><b>Photos non faites</b><span>Dernière inspection il y a 9 jours</span></div><div class="go">›</div></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary lg" data-go="s-vers">＋　Enregistrer un versement</button>
+        <button class="btn" data-go="s-cal">📅　Voir le calendrier</button>
+        <button class="btn" data-go="s-photos">📷　Photos de la semaine</button>
+      </div>
+
+      <div class="sec"><h3>Derniers mouvements</h3><a data-go="s-hist">Tout voir</a></div>
+      <div class="list">
+        <div class="row"><div class="ic">💵</div><div class="tx"><b>Versement — espèces</b><span>Aujourd'hui · Ass</span></div><div class="amt in">+15 000 F</div></div>
+        <div class="row"><div class="ic">⏸️</div><div class="tx"><b>Voiture au garage</b><span>28–29 juil. · 2 jours non dus</span></div><div class="amt">0 F</div></div>
+        <div class="row"><div class="ic">🔧</div><div class="tx"><b>Entretien — vidange</b><span>26 juil. · Garage Momo</span></div><div class="amt out">−35 000 F</div></div>
+        <div class="row"><div class="ic">💵</div><div class="tx"><b>Versement — Wave</b><span>25 juil. · Ass</span></div><div class="amt in">+15 000 F</div></div>
+        <div class="row"><div class="ic">🛡️</div><div class="tx"><b>Assurance — mensualité</b><span>10 juil.</span></div><div class="amt out">−25 000 F</div></div>
+      </div>
+
+      <p class="note">Maquette · données fictives<br>Montants en francs CFA (XOF)</p>
+    </section>
+
+    <!-- ============ CALENDRIER ============ -->
+    <section class="screen" id="s-cal">
+      <div class="calhead">
+        <button>‹</button>
+        <b>Juillet 2026</b>
+        <button>›</button>
+      </div>
+
+      <div class="dow"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <div class="cal" id="cal"></div>
+
+      <div class="legend2">
+        <span><i style="background:var(--good-soft);border-color:#bfe6bf"></i>Versé</span>
+        <span><i style="background:var(--warn-soft);border-color:#f2dda6"></i>Versement partiel</span>
+        <span><i style="background:var(--crit-soft);border-color:#f0c4c4"></i>Non versé</span>
+        <span><i style="background:repeating-linear-gradient(45deg,#f4f4f1,#f4f4f1 4px,#ebebe6 4px,#ebebe6 8px)"></i>Jour non dû</span>
+      </div>
+
+      <div class="sum">
+        <div><div class="k">Attendu</div><div class="v">330 000</div></div>
+        <div><div class="k">Reçu</div><div class="v">280 000</div></div>
+        <div><div class="k">Manquant</div><div class="v miss">50 000</div></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" id="openoff">⏸️　Déclarer des jours non dus</button>
+      </div>
+      <p class="note">Touche un jour pour saisir un versement<br>ou le marquer comme non dû.</p>
+    </section>
+
+    <!-- ============ VERSEMENT ============ -->
+    <section class="screen" id="s-vers">
+      <h2 class="title">Nouveau versement</h2>
+      <p class="sub">Montant du jour pré-rempli</p>
+
+      <div class="field">
+        <div class="amountbox"><input value="15 000" inputmode="numeric"><span class="cur">F CFA</span></div>
+        <div class="hint">Attendu aujourd'hui : 15 000 F · Solde après : 35 000 F</div>
+      </div>
+
+      <div class="field">
+        <label>Date</label>
+        <div class="chips"><button class="chip on">Aujourd'hui</button><button class="chip">Hier</button><button class="chip">Autre…</button></div>
+      </div>
+
+      <div class="field">
+        <label>Mode de paiement</label>
+        <div class="chips"><button class="chip on">💵 Espèces</button><button class="chip">🌊 Wave</button><button class="chip">🟠 Orange Money</button><button class="chip">🏦 Virement</button></div>
+      </div>
+
+      <div class="field">
+        <label>Note (facultatif)</label>
+        <input class="txt" placeholder="Ex : rattrapage de mardi">
+      </div>
+
+      <button class="btn primary lg" data-go="s-cal">Valider le versement</button>
+      <p class="note">3 taps si le montant est le montant habituel.<br>Tout reste modifiable après coup.</p>
+    </section>
+
+    <!-- ============ DEPENSE ============ -->
+    <section class="screen" id="s-dep">
+      <h2 class="title">Nouvelle dépense</h2>
+      <p class="sub">Uniquement les charges à ta charge</p>
+
+      <div class="field">
+        <label>Catégorie</label>
+        <div class="grid2">
+          <button class="cat on"><span class="e">🔧</span><span class="n">Entretien</span></button>
+          <button class="cat"><span class="e">🛡️</span><span class="n">Assurance</span></button>
+          <button class="cat"><span class="e">🔍</span><span class="n">Contrôle technique</span></button>
+          <button class="cat"><span class="e">➕</span><span class="n">Divers</span></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="amountbox"><input value="35 000" inputmode="numeric"><span class="cur">F CFA</span></div>
+      </div>
+
+      <div class="field">
+        <label>Fournisseur / garage</label>
+        <input class="txt" value="Garage Momo">
+      </div>
+
+      <div class="field">
+        <label>Justificatif</label>
+        <button class="btn">📷　Photographier la facture</button>
+      </div>
+
+      <button class="btn primary lg" data-go="s-home">Enregistrer la dépense</button>
+      <p class="note">Le carburant et le lavage ne sont pas suivis :<br>ils sont à la charge du chauffeur.</p>
+    </section>
+
+    <!-- ============ PHOTOS ============ -->
+    <section class="screen" id="s-photos">
+      <h2 class="title">État du véhicule</h2>
+      <p class="sub">Inspection du 31 juillet · 3 photos sur 6</p>
+
+      <div class="grid2">
+        <div class="slot done"><span class="n">Avant</span></div>
+        <div class="slot done"><span class="n">Arrière</span></div>
+        <div class="slot done"><span class="n">Côté gauche</span></div>
+        <div class="slot"><span class="e">📷</span><span class="n">Côté droit</span></div>
+        <div class="slot"><span class="e">📷</span><span class="n">Intérieur</span></div>
+        <div class="slot"><span class="e">📷</span><span class="n">Tableau de bord</span></div>
+      </div>
+
+      <div class="field" style="margin-top:18px">
+        <label>Kilométrage</label>
+        <input class="txt" value="142 380 km">
+      </div>
+
+      <div class="field">
+        <label>État général</label>
+        <div class="chips"><button class="chip">1</button><button class="chip">2</button><button class="chip">3</button><button class="chip on">4</button><button class="chip">5</button></div>
+      </div>
+
+      <div class="field">
+        <label>Commentaire</label>
+        <input class="txt" placeholder="Ex : rayure légère portière droite">
+      </div>
+
+      <button class="btn primary lg" data-go="s-home">Terminer l'inspection</button>
+      <p class="note">Photos compressées automatiquement :<br>≈ 250 Ko chacune au lieu de 4 Mo.</p>
+    </section>
+
+    <!-- ============ HISTORIQUE ============ -->
+    <section class="screen" id="s-hist">
+      <h2 class="title">Historique</h2>
+      <div class="chips" style="margin-bottom:14px">
+        <button class="chip sm on">Tout</button><button class="chip sm">Versements</button>
+        <button class="chip sm">Dépenses</button><button class="chip sm">Jours non dus</button>
+      </div>
+
+      <div class="sec"><h3>Vendredi 31 juillet</h3></div>
+      <div class="list"><div class="row"><div class="ic">💵</div><div class="tx"><b>Versement — espèces</b><span>Saisi par Mamadou · 07:42</span></div><div class="amt in">+15 000 F</div></div></div>
+
+      <div class="sec"><h3>Jeudi 30 juillet</h3></div>
+      <div class="list"><div class="row"><div class="ic">❌</div><div class="tx"><b>Aucun versement</b><span>15 000 F attendus</span></div><div class="amt out">−15 000 F</div></div></div>
+
+      <div class="sec"><h3>28 – 29 juillet</h3></div>
+      <div class="list"><div class="row"><div class="ic">⏸️</div><div class="tx"><b>Voiture au garage</b><span>Jours non dus · saisi par Mamadou</span></div><div class="amt">0 F</div></div></div>
+
+      <div class="sec"><h3>Dimanche 26 juillet</h3></div>
+      <div class="list"><div class="row"><div class="ic">🔧</div><div class="tx"><b>Entretien — vidange + filtres</b><span>Garage Momo · 142 100 km</span></div><div class="amt out">−35 000 F</div></div></div>
+
+      <div class="sec"><h3>Vendredi 17 juillet</h3></div>
+      <div class="list"><div class="row"><div class="ic">💵</div><div class="tx"><b>Versement partiel — Wave</b><span>10 000 F sur 15 000 F</span></div><div class="amt in">+10 000 F</div></div></div>
+    </section>
+
+    <!-- ============ RENTABILITE ============ -->
+    <section class="screen" id="s-renta">
+      <h2 class="title">Rentabilité</h2>
+      <p class="sub">6 derniers mois · montants en F CFA</p>
+
+      <div class="chartcard">
+        <div class="legend"><span><i style="background:var(--s1)"></i>Encaissé</span><span><i style="background:var(--s2)"></i>Dépenses</span></div>
+        <div class="bars" id="bars"></div>
+      </div>
+
+      <div class="tiles" style="margin-top:12px">
+        <div class="tile"><div class="k">Net cumulé</div><div class="v">+1 240 000 <small>F</small></div><div class="d">depuis février</div></div>
+        <div class="tile"><div class="k">Dépenses / km</div><div class="v">35 <small>F</small></div><div class="d">sur 12 400 km</div></div>
+      </div>
+
+      <div class="sec"><h3>Répartition des dépenses</h3></div>
+      <div class="split">
+        <div class="sline"><span class="n">Entretien</span><span class="t"><i style="width:100%"></i></span><span class="v">210 000</span></div>
+        <div class="sline"><span class="n">Assurance</span><span class="t"><i style="width:71%"></i></span><span class="v">150 000</span></div>
+        <div class="sline"><span class="n">Contrôle tech.</span><span class="t"><i style="width:19%"></i></span><span class="v">40 000</span></div>
+        <div class="sline"><span class="n">Divers</span><span class="t"><i style="width:14%"></i></span><span class="v">30 000</span></div>
+      </div>
+
+      <div class="actions"><button class="btn">⬇︎　Exporter en CSV</button></div>
+    </section>
+
+    <!-- ============ REGLAGES ============ -->
+    <section class="screen" id="s-plus">
+      <h2 class="title">Réglages</h2>
+
+      <div class="banner">Un seul type de compte : <b>administrateur</b> (email + mot de passe). Tous les autres consultent via le lien de partage, sans compte et sans pouvoir rien modifier.</div>
+
+      <div class="sec"><h3>Contrat en cours</h3></div>
+      <div class="list">
+        <div class="row"><div class="ic">📅</div><div class="tx"><b>15 000 F par jour</b><span>Du lundi au samedi · dimanche non dû</span></div><div class="go">›</div></div>
+        <div class="row"><div class="ic">⏸️</div><div class="tx"><b>Jours non dus</b><span>Congés, garage, révision, panne</span></div><div class="go">›</div></div>
+        <div class="row"><div class="ic">🔒</div><div class="tx"><b>Caution</b><span>150 000 F versés le 12 février</span></div><div class="go">›</div></div>
+      </div>
+
+      <div class="sec"><h3>Comptes administrateurs</h3></div>
+      <div class="list">
+        <div class="member"><div class="av">MD</div><div><b>Mamadou D.</b><span>mdiop99@gmail.com</span></div><div class="tag admin">Admin</div></div>
+        <div class="member"><div class="av">＋</div><div><b>Ajouter un administrateur</b><span>Email + mot de passe</span></div></div>
+      </div>
+
+      <div class="sec"><h3>Lien de consultation</h3></div>
+      <div class="link">🔗 suivi-voiture.vercel.app/p/9fK2xQ</div>
+      <div class="list" style="margin-top:10px">
+        <div class="toggle"><div><b>Calendrier & solde</b><span>Jours versés et jours en retard</span></div><div class="sw on"></div></div>
+        <div class="toggle"><div><b>Dépenses</b><span>Entretien, assurance, contrôle technique</span></div><div class="sw on"></div></div>
+        <div class="toggle"><div><b>Photos du véhicule</b><span>Inspections hebdomadaires</span></div><div class="sw"></div></div>
+      </div>
+      <div class="actions">
+        <button class="btn">📤　Envoyer sur WhatsApp</button>
+        <button class="btn">🔄　Révoquer et régénérer le lien</button>
+      </div>
+      <p class="note">Lecture seule : personne ne peut ajouter<br>ni modifier quoi que ce soit via ce lien.</p>
+
+      <div class="sec"><h3>Échéances</h3></div>
+      <div class="list">
+        <div class="row"><div class="ic">🛡️</div><div class="tx"><b>Assurance</b><span>12 août 2026 · 25 000 F</span></div><div class="amt out">12 j</div></div>
+        <div class="row"><div class="ic">🔍</div><div class="tx"><b>Contrôle technique</b><span>3 novembre 2026 · 20 000 F</span></div><div class="amt">95 j</div></div>
+        <div class="row"><div class="ic">🔧</div><div class="tx"><b>Prochaine vidange</b><span>147 000 km · dans ~4 600 km</span></div><div class="amt">—</div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav id="tabs">
+    <button class="on" data-go="s-home"><span class="e">🏠</span>Accueil</button>
+    <button data-go="s-cal"><span class="e">📅</span>Calendrier</button>
+    <button class="fab" data-go="s-vers"><span class="e">＋</span></button>
+    <button data-go="s-dep"><span class="e">🧾</span>Dépenses</button>
+    <button data-go="s-plus"><span class="e">⚙️</span>Réglages</button>
+  </nav>
+
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet"><div class="grab"></div><div id="sheetbody"></div></div>
+</div>
+
+<style>
+.slot{aspect-ratio:4/3;border-radius:13px;border:1.5px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card);cursor:pointer}
+.slot.done{border:0;background:linear-gradient(140deg,#d9e3ee,#b9c7d6);position:relative;overflow:hidden}
+.slot.done::after{content:"✓";position:absolute;top:7px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--good);color:#fff;font-size:12px;display:grid;place-items:center;font-weight:700}
+.slot .e{font-size:22px;opacity:.5}
+.slot .n{font-size:11.5px;font-weight:600;color:var(--ink-2);margin-top:4px}
+.slot.done .n{color:#1f3448}
+</style>
+
+<script>
+const F = n => n.toLocaleString('fr-FR');
+
+/* ---------- navigation ---------- */
+const main=document.getElementById('main'), back=document.getElementById('back');
+const tabs=[...document.querySelectorAll('#tabs button')];
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
+  tabs.forEach(t=>t.classList.toggle('on', t.dataset.go===id && !t.classList.contains('fab')));
+  back.style.display = id==='s-home' ? 'none':'block';
+  main.scrollTop=0; closeSheet();
+}
+back.onclick=()=>go('s-home');
+
+/* ---------- calendrier ---------- */
+// juillet 2026 : le 1er est un mercredi
+const DAILY = 15000;
+const state = {};                       // 1..31
+const offReason = {};
+[5,12,19,26].forEach(d=>{state[d]='off'; offReason[d]='Dimanche';});
+[13,14,15].forEach(d=>{state[d]='off'; offReason[d]='Congés chauffeur';});
+[28,29].forEach(d=>{state[d]='off'; offReason[d]='Voiture au garage';});
+[23,24,30].forEach(d=>state[d]='miss');
+state[17]='part';
+for(let d=1;d<=31;d++) if(!state[d]) state[d]='paid';
+
+const cal=document.getElementById('cal');
+let html='';
+for(let i=0;i<2;i++) html+='<div class="day empty"></div>';   // mer = 3e colonne
+for(let d=1; d<=31; d++){
+  const st=state[d];
+  const mark = st==='paid'?'✓' : st==='miss'?'✕' : st==='part'?'½' : st==='off'?'—' : '';
+  html+=`<button class="day ${st}${d===31?' today':''}" data-d="${d}">
+    <span class="n">${d}</span><span class="m">${mark}</span></button>`;
+}
+cal.innerHTML=html;
+
+/* ---------- sheet ---------- */
+const scrim=document.getElementById('scrim'), sheet=document.getElementById('sheet'), body=document.getElementById('sheetbody');
+function openSheet(h){ body.innerHTML=h; scrim.classList.add('on'); sheet.classList.add('on'); }
+function closeSheet(){ scrim.classList.remove('on'); sheet.classList.remove('on'); }
+scrim.onclick=closeSheet;
+
+const DOW=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function dayName(d){ return DOW[(new Date(2026,6,d)).getDay()]; }
+
+function daySheet(d){
+  const st=state[d];
+  const titles={paid:'Versement reçu',miss:'Aucun versement',part:'Versement partiel',off:offReason[d]||'Jour non dû'};
+  const amounts={paid:`+ ${F(DAILY)} F`,miss:`0 F sur ${F(DAILY)} F attendus`,part:`10 000 F sur ${F(DAILY)} F`,off:"0 F — rien n'est dû ce jour"};
+  const badge={paid:'good',miss:'bad',part:'warn',off:'off'};
+  const colors={good:'var(--good-soft);color:var(--good-ink)',bad:'var(--crit-soft);color:var(--crit-ink)',warn:'var(--warn-soft);color:var(--warn-ink)',off:'var(--plane);color:var(--ink-2)'};
+  openSheet(`
+    <h4>${dayName(d).charAt(0).toUpperCase()+dayName(d).slice(1)} ${d} juillet</h4>
+    <p class="sd">${titles[st]}</p>
+    <div style="background:${colors[badge[st]].split(';')[0]};color:${colors[badge[st]].split('color:')[1]};padding:16px;border-radius:14px;font-size:20px;font-weight:700;text-align:center;margin-bottom:18px;font-variant-numeric:tabular-nums">${amounts[st]}</div>
+    <div class="actions" style="margin-top:0">
+      ${st==='off'
+        ? `<button class="btn ghost" onclick="closeSheet()">Repasser en jour dû</button>`
+        : `<button class="btn primary" onclick="closeSheet()">${st==='paid'?'Modifier le versement':'Saisir le versement'}</button>
+           <button class="btn ghost" onclick="offSheet(${d})">⏸️　Marquer comme jour non dû</button>`}
+    </div>
+    <p class="note" style="margin-top:14px">Un jour non dû ne compte ni dans l'attendu,<br>ni dans le retard du chauffeur.</p>`);
+}
+
+function offSheet(d){
+  openSheet(`
+    <h4>Jours non dus</h4>
+    <p class="sd">Ces jours-là, la voiture ne roule pas : rien n'est attendu.</p>
+    <div class="field"><label>Motif</label>
+      <div class="chips">
+        <button class="chip on">🔧 Garage</button><button class="chip">🏖️ Congés</button>
+        <button class="chip">🔍 Révision</button><button class="chip">⚠️ Panne</button>
+        <button class="chip">➕ Autre</button>
+      </div></div>
+    <div class="field"><label>Du</label><input class="txt" value="${d||28} juillet 2026"></div>
+    <div class="field"><label>Au</label><input class="txt" value="${(d||28)+1} juillet 2026"></div>
+    <button class="btn primary lg" onclick="closeSheet()">Enregistrer</button>
+    <p class="note">Le calendrier et le solde se recalculent aussitôt.</p>`);
+}
+
+cal.addEventListener('click',e=>{
+  const b=e.target.closest('.day[data-d]'); if(b) daySheet(+b.dataset.d);
+});
+document.getElementById('openoff').onclick=()=>offSheet(28);
+
+/* ---------- interactions génériques ---------- */
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-go]'); if(el){e.preventDefault(); go(el.dataset.go); return;}
+  const chip=e.target.closest('.chip'); if(chip){[...chip.parentElement.children].forEach(c=>c.classList.remove('on'));chip.classList.add('on');return;}
+  const cat=e.target.closest('.cat'); if(cat){[...cat.parentElement.children].forEach(c=>c.classList.remove('on'));cat.classList.add('on');return;}
+  const sw=e.target.closest('.sw'); if(sw){sw.classList.toggle('on');return;}
+  const slot=e.target.closest('.slot:not(.done)'); if(slot){slot.classList.add('done');slot.querySelector('.e')?.remove();}
+});
+
+/* ---------- graphique ---------- */
+const data=[{m:'Fév',in:255000,out:120000},{m:'Mar',in:315000,out:45000},{m:'Avr',in:300000,out:95000},
+            {m:'Mai',in:330000,out:38000},{m:'Jui',in:290000,out:72000},{m:'Juil',in:280000,out:60000}];
+const max=Math.max(...data.flatMap(d=>[d.in,d.out]));
+document.getElementById('bars').innerHTML=data.map(d=>`
+  <div class="mon">
+    <div class="net">+${Math.round((d.in-d.out)/1000)}k</div>
+    <div class="pair">
+      <div class="bar a" style="height:${d.in/max*100}%" title="Encaissé ${F(d.in)} F"></div>
+      <div class="bar b" style="height:${d.out/max*100}%" title="Dépenses ${F(d.out)} F"></div>
+    </div>
+    <div class="lbl">${d.m}</div>
+  </div>`).join('');
+</script>
+</body>
+</html>

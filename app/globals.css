@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Palette métier Woto — voir docs/05-charte-ui.md */
+  --color-surface: var(--surface);
+  --color-plane: var(--plane);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-good: var(--good);
+  --color-good-ink: var(--good-ink);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-ink: var(--warn-ink);
+  --color-warn-soft: var(--warn-soft);
+  --color-crit: var(--crit);
+  --color-crit-ink: var(--crit-ink);
+  --color-crit-soft: var(--crit-soft);
+  --color-ink-4: var(--ink-4);
+  --color-line-soft: var(--line-soft);
+  --color-line-2: var(--line-2);
+}
+
+:root {
+  /* Charte Woto — docs/05-charte-ui.md */
+  --surface: #ffffff;
+  --plane: #f4f4f1;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --line: #e6e5df;
+  --brand: #2a78d6;
+  --brand-soft: #eaf2fd;
+  --good: #0ca30c;
+  --good-ink: #046b04;
+  --good-soft: #e7f6e7;
+  --warn: #fab219;
+  --warn-ink: #8a5c00;
+  --warn-soft: #fdf3dd;
+  --crit: #d03b3b;
+  --crit-ink: #9c2020;
+  --crit-soft: #fbeaea;
+  /* Teintes secondaires de la maquette (maquettes-UI/Woto.dc.html) */
+  --ink-4: #c9c8c2;      /* valeurs vides, chevrons */
+  --line-soft: #f0efe9;  /* séparateurs de lignes internes */
+  --line-2: #d6d5cf;     /* pointillés, cases à venir */
+
+  /* Tokens shadcn mappés sur la charte */
+  --background: var(--plane);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--plane);
+  --secondary-foreground: var(--ink);
+  --muted: var(--plane);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--brand-soft);
+  --accent-foreground: var(--ink);
+  --destructive: var(--crit);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--brand);
+  /* Graphique mensuel : encaissé bleu, dépenses orange (paire daltonien-compatible) */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --radius: 14px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
