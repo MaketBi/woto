@@ -6,36 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/lib/supabase/client";
-
-const URL_FONCTIONS = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1`;
-const CLE_ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-async function appelerFonction(
-  nom: "simple-otp" | "simple-verify",
-  corps: Record<string, string>
-): Promise<{
-  success: boolean;
-  error?: string;
-  access_token?: string;
-  refresh_token?: string;
-  attempts_remaining?: number;
-}> {
-  try {
-    const reponse = await fetch(`${URL_FONCTIONS}/${nom}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${CLE_ANON}`,
-        apikey: CLE_ANON,
-      },
-      body: JSON.stringify(corps),
-    });
-    return await reponse.json();
-  } catch {
-    return { success: false, error: "Connexion impossible. Vérifiez le réseau." };
-  }
-}
+import { envoyerCodeOtp, verifierCodeOtp } from "@/app/actions/otp";
 
 export function FormulaireOtp() {
   const router = useRouter();
@@ -57,10 +28,10 @@ export function FormulaireOtp() {
     if (enCours) return;
     setErreur(null);
     setEnCours(true);
-    const resultat = await appelerFonction("simple-otp", { phone: telephone });
+    const resultat = await envoyerCodeOtp(telephone);
     setEnCours(false);
-    if (!resultat.success) {
-      setErreur(resultat.error ?? "Envoi impossible. Réessayez.");
+    if (!resultat.ok) {
+      setErreur(resultat.erreur ?? "Envoi impossible. Réessayez.");
       return;
     }
     setEtape("code");
@@ -73,32 +44,19 @@ export function FormulaireOtp() {
     if (enCours || code.trim().length < 4) return;
     setErreur(null);
     setEnCours(true);
-    const resultat = await appelerFonction("simple-verify", {
-      phone: telephone,
-      code: code.trim(),
-    });
+    const resultat = await verifierCodeOtp(telephone, code.trim());
 
-    if (!resultat.success || !resultat.access_token || !resultat.refresh_token) {
+    if (!resultat.ok) {
       setEnCours(false);
       const restantes =
-        resultat.attempts_remaining !== undefined && resultat.attempts_remaining >= 0
-          ? ` (${resultat.attempts_remaining} essai${resultat.attempts_remaining > 1 ? "s" : ""} restant${resultat.attempts_remaining > 1 ? "s" : ""})`
+        resultat.essaisRestants !== undefined && resultat.essaisRestants >= 0
+          ? ` (${resultat.essaisRestants} essai${resultat.essaisRestants > 1 ? "s" : ""} restant${resultat.essaisRestants > 1 ? "s" : ""})`
           : "";
-      setErreur((resultat.error ?? "Code invalide") + restantes);
+      setErreur((resultat.erreur ?? "Code invalide") + restantes);
       return;
     }
 
-    // Pose la session dans les cookies via le client navigateur Supabase.
-    const supabase = createClient();
-    const { error } = await supabase.auth.setSession({
-      access_token: resultat.access_token,
-      refresh_token: resultat.refresh_token,
-    });
-    setEnCours(false);
-    if (error) {
-      setErreur("Erreur d'ouverture de session. Réessayez.");
-      return;
-    }
+    // La session a été posée en cookies par la Server Action.
     router.push("/chauffeur");
     router.refresh();
   }

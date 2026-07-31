@@ -3,7 +3,8 @@ import "server-only";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/database.types";
 
-// Client service_role — contourne RLS. Réservé au serveur (page publique /p/[jeton]).
+// Client service_role — contourne RLS. Réservé au serveur : OTP chauffeur
+// (app/actions/otp.ts) et page publique /p/[jeton].
 // `server-only` fait échouer la compilation si ce module est importé côté client.
 export function createAdminClient() {
   return createSupabaseClient<Database>(
