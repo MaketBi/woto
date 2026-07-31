@@ -73,7 +73,15 @@ async function envoyerSMS(
       },
       body: params.toString(),
     });
-    const resultat = await reponse.json();
+    // L'API renvoie parfois une erreur en texte brut (ex. auth invalide)
+    const brut = await reponse.text();
+    let resultat: { SMSMessageData?: { Recipients?: { statusCode: number; status: string }[]; Message?: string } };
+    try {
+      resultat = JSON.parse(brut);
+    } catch {
+      console.error("Africa's Talking (réponse non-JSON):", brut.slice(0, 200));
+      return { ok: false, erreur: "Échec de l'envoi du SMS." };
+    }
     const destinataire = resultat.SMSMessageData?.Recipients?.[0];
     if (
       destinataire &&
