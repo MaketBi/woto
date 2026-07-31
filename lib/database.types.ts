@@ -487,6 +487,7 @@ export type Database = {
           jeton: string
           libelle: string | null
           voir_calendrier: boolean
+          voir_montants: boolean
           voir_depenses: boolean
           voir_photos: boolean
           actif: boolean
@@ -499,6 +500,7 @@ export type Database = {
           jeton?: string
           libelle?: string | null
           voir_calendrier?: boolean
+          voir_montants?: boolean
           voir_depenses?: boolean
           voir_photos?: boolean
           actif?: boolean
@@ -511,6 +513,7 @@ export type Database = {
           jeton?: string
           libelle?: string | null
           voir_calendrier?: boolean
+          voir_montants?: boolean
           voir_depenses?: boolean
           voir_photos?: boolean
           actif?: boolean

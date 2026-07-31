@@ -4,7 +4,9 @@ import { format, parseISO, differenceInCalendarDays } from "date-fns";
 import { fr } from "date-fns/locale";
 import { clsx } from "clsx";
 import { getContratActif, getEcheances } from "@/lib/data";
+import { createClient } from "@/lib/supabase/server";
 import { fcfa, jourISO } from "@/lib/format";
+import { LienPartage } from "./lien-partage";
 
 export const metadata = { title: "Réglages — Woto" };
 
@@ -28,7 +30,17 @@ export default async function PageReglages() {
   if (!contrat) notFound();
 
   const aujourdhui = jourISO();
-  const echeances = await getEcheances(contrat.vehicule_id);
+  const supabase = await createClient();
+  const [echeances, { data: partage }] = await Promise.all([
+    getEcheances(contrat.vehicule_id),
+    supabase
+      .from("partages")
+      .select("*")
+      .eq("vehicule_id", contrat.vehicule_id)
+      .order("cree_le", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+  ]);
   const prochaine = echeances.find(
     (e) =>
       e.statut !== "fait" &&
@@ -101,9 +113,14 @@ export default async function PageReglages() {
         </span>
       </Link>
 
-      <div className="rounded-xl border border-dashed border-line-2 bg-surface p-3.5 text-center text-xs leading-snug text-ink-3">
-        Le lien de consultation à partager arrive dans une prochaine version.
+      <div className="mt-1 text-xs font-semibold uppercase tracking-[0.4px] text-ink-3">
+        Lien de consultation
       </div>
+      <LienPartage
+        partage={partage ?? null}
+        vehiculeId={contrat.vehicule_id}
+        urlBase={process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}
+      />
     </>
   );
 }
