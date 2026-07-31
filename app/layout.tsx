@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Woto",
   description: "Suivi du véhicule et des versements du chauffeur",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icons/apple-touch-icon.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
