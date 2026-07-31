@@ -1,19 +1,32 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getContratActif, getInspections } from "@/lib/data";
+import { ListeInspections } from "@/components/inspection/galerie";
+
 export const metadata = { title: "Photos — Woto" };
 
-// Écran complété à l'étape 6 (inspections guidées 6 angles + galerie).
-export default function PagePhotos() {
+export default async function PagePhotos() {
+  const contrat = await getContratActif();
+  if (!contrat) notFound();
+
+  const inspections = await getInspections(contrat.vehicule_id);
+
   return (
     <>
       <h1 className="text-xl font-bold tracking-[-0.3px]">Photos</h1>
-      <div className="rounded-xl border border-dashed border-line-2 bg-surface px-4 py-[26px] text-center">
-        <div className="text-sm font-semibold text-ink-2">
-          Bientôt disponible
-        </div>
-        <div className="mt-1 text-[13px] leading-[1.4] text-ink-3">
-          Les inspections photo du véhicule (6 angles guidés) arrivent dans une
-          prochaine version.
-        </div>
-      </div>
+      <p className="-mt-1 text-[13px] text-ink-3">
+        Contrôles photo du véhicule : 6 angles, kilométrage, état.
+      </p>
+
+      <Link
+        href="/photos/nouveau"
+        className="flex min-h-[52px] items-center justify-center rounded-xl bg-brand text-base font-semibold text-white"
+      >
+        Nouveau contrôle
+      </Link>
+
+      <div className="mt-0.5 text-sm font-semibold">Contrôles passés</div>
+      <ListeInspections inspections={inspections} hrefBase="/photos" />
     </>
   );
 }

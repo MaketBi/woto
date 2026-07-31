@@ -176,15 +176,13 @@ export default async function PageChauffeur({
         </div>
       </div>
 
-      {/* Photos — étape 6 */}
-      <div className="rounded-xl border border-dashed border-line-2 bg-surface px-4 py-[18px] text-center">
-        <div className="text-sm font-semibold text-ink-2">
-          Photos du véhicule
-        </div>
-        <div className="mt-1 text-[13px] leading-[1.4] text-ink-3">
-          Le contrôle photo (6 angles + kilométrage) arrive bientôt.
-        </div>
-      </div>
+      {/* Photos */}
+      <Link
+        href="/chauffeur/photos"
+        className="flex min-h-[52px] items-center justify-center rounded-xl border border-line bg-surface text-[15px] font-semibold"
+      >
+        Photos du véhicule
+      </Link>
 
       <p className="text-center text-[11px] leading-[1.4] text-ink-3">
         Espace personnel en lecture seule. Pour toute correction, contactez le

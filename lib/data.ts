@@ -326,6 +326,76 @@ export async function getDepensesMois(
   };
 }
 
+export type InspectionResume = Tables<"inspections"> & { nbPhotos: number };
+
+/** Les inspections d'un véhicule, plus récentes d'abord. */
+export async function getInspections(
+  vehiculeId: string
+): Promise<InspectionResume[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("inspections")
+    .select("*, inspection_photos(id)")
+    .eq("vehicule_id", vehiculeId)
+    .order("date", { ascending: false })
+    .order("cree_le", { ascending: false });
+
+  return (data ?? []).map((i) => {
+    const { inspection_photos, ...inspection } = i as Tables<"inspections"> & {
+      inspection_photos: { id: string }[];
+    };
+    return { ...inspection, nbPhotos: inspection_photos.length };
+  });
+}
+
+export type PhotoSignee = {
+  angle: string;
+  chemin: string;
+  url: string | null;
+};
+
+export type InspectionDetail = Tables<"inspections"> & {
+  photos: PhotoSignee[];
+};
+
+/** Une inspection et ses photos en URLs signées (1 h). */
+export async function getInspection(
+  id: string
+): Promise<InspectionDetail | null> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("inspections")
+    .select("*, inspection_photos(angle, chemin, ordre)")
+    .eq("id", id)
+    .maybeSingle();
+  if (!data) return null;
+
+  const { inspection_photos, ...inspection } = data as Tables<"inspections"> & {
+    inspection_photos: { angle: string; chemin: string; ordre: number }[];
+  };
+  const lignes = [...inspection_photos].sort((a, b) => a.ordre - b.ordre);
+
+  let urls: (string | null)[] = lignes.map(() => null);
+  if (lignes.length > 0) {
+    const { data: signees } = await supabase.storage
+      .from("photos")
+      .createSignedUrls(
+        lignes.map((p) => p.chemin),
+        3600
+      );
+    if (signees) urls = signees.map((s) => s.signedUrl ?? null);
+  }
+
+  return {
+    ...inspection,
+    photos: lignes.map((p, i) => ({
+      angle: p.angle,
+      chemin: p.chemin,
+      url: urls[i],
+    })),
+  };
+}
+
 // ---- Petits helpers de dates métier (chaînes yyyy-MM-dd, heure locale) ----
 
 export function ajouterJours(jour: string, n: number): string {
