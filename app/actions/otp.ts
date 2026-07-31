@@ -246,8 +246,10 @@ export async function verifierCodeOtp(
 
     await admin.from("chauffeurs").update({ user_id: userId }).eq("id", chauffeur.id);
   } else {
-    // S'assurer que le mot de passe déterministe est à jour
+    // Mot de passe déterministe à jour, et email réaligné si le numéro du
+    // chauffeur a changé depuis la création du compte.
     await admin.auth.admin.updateUserById(userId, {
+      email,
       password: motDePasse,
       email_confirm: true,
     });
