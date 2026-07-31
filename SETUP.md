@@ -44,7 +44,15 @@ Les coller dans `.env.local` (copié depuis `.env.example`).
 ## 3. Vercel
 
 1. Créer un compte, **Add New > Project**, importer le dépôt `woto`.
-2. Ajouter les trois variables d'environnement (les mêmes que `.env.local`, plus `NEXT_PUBLIC_SITE_URL` avec l'URL Vercel une fois connue).
+   Le fichier `vercel.json` du dépôt fixe déjà la région des fonctions à Paris (`cdg1`), au plus près de la base Supabase.
+2. Ajouter les variables d'environnement (mêmes valeurs que `.env.local`) :
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY` — secrète (OTP chauffeur + page publique)
+   - `AT_USERNAME` et `AT_API_KEY` — envoi des SMS (Africa's Talking)
+   - `NEXT_PUBLIC_SITE_URL` — l'URL Vercel une fois connue (ex. `https://woto.vercel.app`)
+
+   Les variables `SUPABASE_DB_*` de `.env.local` ne servent qu'en local (psql) : ne pas les mettre sur Vercel.
 3. Déployer.
 
 ## 4. Le keep-alive anti-pause
