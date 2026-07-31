@@ -51,9 +51,8 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // L'utilisateur doit exister et être actif dans `profils` ; sinon déconnexion.
-  // (La policy RLS ne laisse lire profils qu'aux admins actifs : un compte
-  // orphelin ou désactivé ne verra pas sa propre ligne.)
+  // Deux rôles : admin (présent et actif dans `profils`) ou chauffeur
+  // (compte lié via `chauffeurs.user_id`). Sinon déconnexion.
   const { data: profil } = await supabase
     .from("profils")
     .select("id")
@@ -61,13 +60,31 @@ export async function updateSession(request: NextRequest) {
     .eq("actif", true)
     .maybeSingle();
 
-  if (!profil) {
-    await supabase.auth.signOut();
+  const estEspaceChauffeur = pathname.startsWith("/chauffeur");
+
+  if (profil) {
+    return supabaseResponse; // admin : accès à tout
+  }
+
+  const { data: chauffeur } = await supabase
+    .from("chauffeurs")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("actif", true)
+    .maybeSingle();
+
+  if (chauffeur) {
+    // Le chauffeur est confiné à son espace.
+    if (estEspaceChauffeur) return supabaseResponse;
     const url = request.nextUrl.clone();
-    url.pathname = "/connexion";
-    url.search = "?erreur=profil";
+    url.pathname = "/chauffeur";
+    url.search = "";
     return NextResponse.redirect(url);
   }
 
-  return supabaseResponse;
+  await supabase.auth.signOut();
+  const url = request.nextUrl.clone();
+  url.pathname = "/connexion";
+  url.search = "?erreur=profil";
+  return NextResponse.redirect(url);
 }

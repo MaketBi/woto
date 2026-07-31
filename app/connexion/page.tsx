@@ -39,6 +39,13 @@ export default async function PageConnexion({
       </div>
 
       <FormulaireConnexion erreurProfil={erreur === "profil"} />
+
+      <a
+        href="/connexion/chauffeur"
+        className="mx-auto mt-6 flex min-h-11 items-center px-2 text-sm font-semibold text-ink-2"
+      >
+        Chauffeur ? Se connecter par SMS
+      </a>
     </main>
   );
 }

@@ -69,13 +69,11 @@ export function FeuilleJour({
   onFermer,
   contratId,
   dernierMode,
-  aujourdhui,
 }: {
   jour: JourEtat | null;
   onFermer: () => void;
   contratId: string;
   dernierMode: string;
-  aujourdhui: string;
 }) {
   const router = useRouter();
   const [enCours, startTransition] = useTransition();

@@ -89,6 +89,7 @@ export type Database = {
           nom: string
           telephone: string | null
           actif: boolean
+          user_id: string | null
           cree_le: string
         }
         Insert: {
@@ -96,6 +97,7 @@ export type Database = {
           nom: string
           telephone?: string | null
           actif?: boolean
+          user_id?: string | null
           cree_le?: string
         }
         Update: {
@@ -103,7 +105,38 @@ export type Database = {
           nom?: string
           telephone?: string | null
           actif?: boolean
+          user_id?: string | null
           cree_le?: string
+        }
+        Relationships: []
+      }
+      otp_codes: {
+        Row: {
+          id: string
+          phone: string
+          code: string
+          attempts: number
+          expires_at: string
+          verified_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          phone: string
+          code: string
+          attempts?: number
+          expires_at: string
+          verified_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          phone?: string
+          code?: string
+          attempts?: number
+          expires_at?: string
+          verified_at?: string | null
+          created_at?: string
         }
         Relationships: []
       }

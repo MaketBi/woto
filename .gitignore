@@ -12,3 +12,7 @@ next-env.d.ts
 tsconfig.tsbuildinfo
 /playwright-report/
 /test-results/
+
+# Références Yonima (source des edge functions adaptées) — ne pas committer
+/supabase/simple-otp/
+/supabase/simple-verify/
