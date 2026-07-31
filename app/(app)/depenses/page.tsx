@@ -97,6 +97,14 @@ export default async function PageDepenses() {
         Ajouter une dépense
       </Link>
 
+      <Link
+        href="/depenses/rentabilite"
+        className="flex min-h-[46px] items-center justify-between rounded-xl border border-line bg-surface px-3.5 text-sm font-semibold"
+      >
+        Rentabilité sur 6 mois
+        <span className="text-[15px] font-semibold text-ink-4">›</span>
+      </Link>
+
       {/* Liste du mois */}
       <div className="mt-0.5 text-sm font-semibold">Ce mois-ci</div>
       {donnees.liste.length === 0 ? (

@@ -317,7 +317,7 @@ export default async function Accueil() {
       <div className="mt-0.5 flex items-baseline justify-between">
         <span className="text-sm font-semibold">Derniers mouvements</span>
         {mouvements.length > 0 && (
-          <Link href="/depenses" className="text-xs font-semibold text-brand">
+          <Link href="/historique" className="text-xs font-semibold text-brand">
             Tout voir
           </Link>
         )}

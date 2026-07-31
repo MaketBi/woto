@@ -115,7 +115,6 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
     Number(aujourdhui.slice(5, 7)),
   ];
   const debutMois = `${aujourdhui.slice(0, 7)}-01`;
-  const dansQuinzeJours = ajouterJours(aujourdhui, 15);
 
   const [
     solde,
@@ -154,11 +153,8 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
       .eq("vehicule_id", contrat.vehicule_id)
       .eq("statut", "a_venir")
       .not("date_echeance", "is", null)
-      .lte("date_echeance", dansQuinzeJours)
       .gte("date_echeance", aujourdhui)
-      .order("date_echeance", { ascending: true })
-      .limit(1)
-      .maybeSingle(),
+      .order("date_echeance", { ascending: true }),
     supabase
       .from("versements")
       .select("id, date, montant, mode, cree_le")
@@ -258,7 +254,13 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
     semaine,
     encaisseMois,
     depensesMois: totalDepensesMois,
-    echeanceProche: echeances.data ?? null,
+    // L'alerte respecte le rappel_jours propre à chaque échéance
+    echeanceProche:
+      (echeances.data ?? []).find(
+        (e) =>
+          e.date_echeance !== null &&
+          e.date_echeance <= ajouterJours(aujourdhui, e.rappel_jours)
+      ) ?? null,
     mouvements,
   };
 }
@@ -324,6 +326,138 @@ export async function getDepensesMois(
     liste,
     moisPrecedentVide,
   };
+}
+
+/** Toutes les échéances du véhicule — à venir d'abord (par date), puis faites. */
+export async function getEcheances(
+  vehiculeId: string
+): Promise<Tables<"echeances">[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("echeances")
+    .select("*")
+    .eq("vehicule_id", vehiculeId);
+  return (data ?? []).sort((a, b) => {
+    if (a.statut !== b.statut) return a.statut === "fait" ? 1 : -1;
+    return (a.date_echeance ?? "9999") < (b.date_echeance ?? "9999") ? -1 : 1;
+  });
+}
+
+export type MoisRentabilite = {
+  mois: string; // yyyy-MM
+  encaisse: number;
+  depenses: number;
+};
+
+export type Rentabilite = {
+  mois: MoisRentabilite[]; // 6 mois, du plus ancien au plus récent
+  totalEncaisse: number;
+  totalDepenses: number;
+  parCategorie: Record<string, number>; // sur les 6 mois
+};
+
+/** Encaissé vs dépenses sur les 6 derniers mois (mois courant inclus). */
+export async function getRentabilite(
+  contratId: string,
+  vehiculeId: string,
+  moisCourant: string
+): Promise<Rentabilite> {
+  const supabase = await createClient();
+  const moisListe = Array.from({ length: 6 }, (_, i) =>
+    ajouterMois(moisCourant, i - 5)
+  );
+  const debut = `${moisListe[0]}-01`;
+  const finExclue = `${moisSuivant(moisCourant)}-01`;
+
+  const [versements, depenses] = await Promise.all([
+    supabase
+      .from("versements")
+      .select("date, montant")
+      .eq("contrat_id", contratId)
+      .gte("date", debut)
+      .lt("date", finExclue),
+    supabase
+      .from("depenses")
+      .select("date, montant, categorie")
+      .eq("vehicule_id", vehiculeId)
+      .gte("date", debut)
+      .lt("date", finExclue),
+  ]);
+
+  const parMois = new Map<string, MoisRentabilite>(
+    moisListe.map((m) => [m, { mois: m, encaisse: 0, depenses: 0 }])
+  );
+  for (const v of versements.data ?? []) {
+    const m = parMois.get(v.date.slice(0, 7));
+    if (m) m.encaisse += Number(v.montant);
+  }
+  const parCategorie: Record<string, number> = {};
+  for (const d of depenses.data ?? []) {
+    const m = parMois.get(d.date.slice(0, 7));
+    if (m) m.depenses += Number(d.montant);
+    parCategorie[d.categorie] = (parCategorie[d.categorie] ?? 0) + Number(d.montant);
+  }
+
+  const mois = moisListe.map((m) => parMois.get(m)!);
+  return {
+    mois,
+    totalEncaisse: mois.reduce((s, m) => s + m.encaisse, 0),
+    totalDepenses: mois.reduce((s, m) => s + m.depenses, 0),
+    parCategorie,
+  };
+}
+
+/** Historique unifié versements + dépenses, du plus récent au plus ancien. */
+export async function getHistorique(
+  contratId: string,
+  vehiculeId: string,
+  montantJournalier: number
+): Promise<Mouvement[]> {
+  const supabase = await createClient();
+  const [versements, depenses] = await Promise.all([
+    supabase
+      .from("versements")
+      .select("id, date, montant, mode, cree_le")
+      .eq("contrat_id", contratId)
+      .order("date", { ascending: false })
+      .order("cree_le", { ascending: false })
+      .limit(300),
+    supabase
+      .from("depenses")
+      .select("id, date, montant, categorie, note, fournisseur, cree_le")
+      .eq("vehicule_id", vehiculeId)
+      .order("date", { ascending: false })
+      .order("cree_le", { ascending: false })
+      .limit(300),
+  ]);
+
+  return [
+    ...(versements.data ?? []).map((v) => ({
+      type: "versement" as const,
+      id: v.id,
+      date: v.date,
+      montant: Number(v.montant),
+      libelle:
+        Number(v.montant) < montantJournalier
+          ? `Versement partiel · ${libelleMode(v.mode)}`
+          : `Versement · ${libelleMode(v.mode)}`,
+      partiel: Number(v.montant) < montantJournalier,
+    })),
+    ...(depenses.data ?? []).map((d) => ({
+      type: "depense" as const,
+      id: d.id,
+      date: d.date,
+      montant: Number(d.montant),
+      libelle:
+        (LIBELLES_CATEGORIE[d.categorie] ?? d.categorie) +
+        (d.note
+          ? ` · ${d.note.toLowerCase()}`
+          : d.fournisseur
+            ? ` · ${d.fournisseur}`
+            : ""),
+      partiel: false,
+    })),
+  ].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 }
 
 export type InspectionResume = Tables<"inspections"> & { nbPhotos: number };

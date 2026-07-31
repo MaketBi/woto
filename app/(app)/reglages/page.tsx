@@ -1,6 +1,10 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getContratActif } from "@/lib/data";
-import { fcfa } from "@/lib/format";
+import { format, parseISO, differenceInCalendarDays } from "date-fns";
+import { fr } from "date-fns/locale";
+import { clsx } from "clsx";
+import { getContratActif, getEcheances } from "@/lib/data";
+import { fcfa, jourISO } from "@/lib/format";
 
 export const metadata = { title: "Réglages — Woto" };
 
@@ -22,6 +26,21 @@ function libelleJoursActifs(jours: number[]): string {
 export default async function PageReglages() {
   const contrat = await getContratActif();
   if (!contrat) notFound();
+
+  const aujourdhui = jourISO();
+  const echeances = await getEcheances(contrat.vehicule_id);
+  const prochaine = echeances.find(
+    (e) =>
+      e.statut !== "fait" &&
+      e.date_echeance !== null &&
+      e.date_echeance >= aujourdhui
+  );
+  const urgente =
+    prochaine?.date_echeance != null &&
+    differenceInCalendarDays(
+      parseISO(prochaine.date_echeance),
+      parseISO(aujourdhui)
+    ) <= prochaine.rappel_jours;
 
   return (
     <>
@@ -53,9 +72,37 @@ export default async function PageReglages() {
         </div>
       </div>
 
+      <div className="mt-1 text-xs font-semibold uppercase tracking-[0.4px] text-ink-3">
+        Échéances
+      </div>
+      <Link
+        href="/reglages/echeances"
+        className="flex min-h-11 items-center justify-between rounded-xl border border-line bg-surface px-3.5 py-3"
+      >
+        <span className="text-sm font-medium text-ink-2">
+          {prochaine
+            ? prochaine.libelle
+            : "Assurance, contrôle technique, vidange…"}
+        </span>
+        <span className="flex items-center gap-2">
+          {prochaine?.date_echeance && (
+            <span
+              className={clsx(
+                "text-[15px] font-semibold",
+                urgente ? "text-crit" : "text-ink"
+              )}
+            >
+              {format(parseISO(prochaine.date_echeance), "d MMM", {
+                locale: fr,
+              })}
+            </span>
+          )}
+          <span className="text-[15px] font-semibold text-ink-4">›</span>
+        </span>
+      </Link>
+
       <div className="rounded-xl border border-dashed border-line-2 bg-surface p-3.5 text-center text-xs leading-snug text-ink-3">
-        Lien de consultation, comptes et échéances arrivent dans une prochaine
-        version.
+        Le lien de consultation à partager arrive dans une prochaine version.
       </div>
     </>
   );
