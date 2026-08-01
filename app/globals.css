@@ -57,31 +57,77 @@
   --color-ink-4: var(--ink-4);
   --color-line-soft: var(--line-soft);
   --color-line-2: var(--line-2);
+
+  /* Accent citron — maquettes-UI/Woto-encre.dc.html */
+  --color-lime: var(--lime);
+  --color-lime-dark: var(--lime-dark);
+  /* Textes et filets sur fond encre */
+  --color-on-ink: var(--on-ink);
+  --color-on-ink-muted: var(--on-ink-muted);
+  --color-ink-line: var(--ink-line);
+  --color-ink-dash: var(--ink-dash);
+  /* Pastilles vives de la semaine */
+  --color-dot-good: var(--dot-good);
+  --color-dot-warn: var(--dot-warn);
+  /* Squelettes de chargement */
+  --color-skeleton: var(--skeleton);
+  --color-skeleton-2: var(--skeleton-2);
+  --color-skeleton-ink: var(--skeleton-ink);
+  /* Boutons secondaires en pilule */
+  --color-fill-soft: var(--fill-soft);
 }
 
 :root {
-  /* Charte Woto — docs/05-charte-ui.md */
+  /* Charte Woto « Carte d'encre » — maquettes-UI/Woto-encre.dc.html */
   --surface: #ffffff;
-  --plane: #f4f4f1;
-  --ink: #0b0b0b;
-  --ink-2: #52514e;
-  --ink-3: #898781;
+  --plane: #f5f4f0;
+  --ink: #16171c;
+  /* Gris de texte assombris par rapport à la maquette (#7c7b76 / #a9a8a1) :
+     ces valeurs échouaient au contraste AA sur fond clair (3,85 et 2,16).
+     La teinte est conservée, seule la luminosité baisse. */
+  --ink-2: #66655f;
+  --ink-3: #6f6e69;
   --line: #e6e5df;
-  --brand: #2a78d6;
-  --brand-soft: #eaf2fd;
-  --good: #0ca30c;
-  --good-ink: #046b04;
-  --good-soft: #e7f6e7;
-  --warn: #fab219;
-  --warn-ink: #8a5c00;
-  --warn-soft: #fdf3dd;
-  --crit: #d03b3b;
-  --crit-ink: #9c2020;
-  --crit-soft: #fbeaea;
-  /* Teintes secondaires de la maquette (maquettes-UI/Woto.dc.html) */
-  --ink-4: #c9c8c2;      /* valeurs vides, chevrons */
+  /* La couleur d'action est l'encre elle-même : plus aucun bleu dans l'app. */
+  --brand: #16171c;
+  --brand-soft: #eef0e2;
+  /* #0f8a4a (maquette) n'atteignait que 4,41 sur blanc : légèrement assombri. */
+  --good: #0d7a41;
+  --good-ink: #0d7a41;
+  --good-soft: #dff8e8;
+  /* Assombris par rapport à la maquette pour passer AA sur fond clair. */
+  --warn: #8a6000;
+  --warn-ink: #7a5400;
+  --warn-soft: #fff0d0;
+  /* --crit sert d'aplat (pastille « non versé ») ET de couleur de texte.
+     L'aplat garde le corail vif de la maquette ; le texte utilise --crit-ink. */
+  --crit: #ff7060;
+  --crit-ink: #c0392b;
+  --crit-soft: #ffe9e6;
+  --ink-4: #cfcec8;      /* valeurs vides, chevrons */
   --line-soft: #f0efe9;  /* séparateurs de lignes internes */
   --line-2: #d6d5cf;     /* pointillés, cases à venir */
+
+  /* Accent citron : puces de CTA, badges, pouce des interrupteurs */
+  --lime: #d4f24d;
+  --lime-dark: #8ea34a;
+  /* Sur fond encre (hero, badge verrouillé) */
+  --on-ink: #e9e8ee;
+  --on-ink-muted: #9b9aa2;
+  --ink-line: #2b2c33;   /* filet séparateur sur encre */
+  --ink-dash: #4b4c55;   /* cercle pointillé « à venir » sur encre */
+  /* Pastilles vives de la semaine */
+  --dot-good: #3ddc7f;
+  --dot-warn: #ffc247;
+  /* Squelettes */
+  --skeleton: #eceae5;
+  --skeleton-2: #f4f3ee;
+  --skeleton-ink: #232429; /* squelette posé sur le hero encre */
+  --fill-soft: #f2f1ec;    /* boutons secondaires, bouton de fermeture */
+  /* Hachures des jours non dus */
+  --hatch-a: #eceae5;
+  --hatch-b: #d6d5cf;
+  --hatch-photo: #e2e1db;
 
   /* Tokens shadcn mappés sur la charte */
   --background: var(--plane);
@@ -102,10 +148,29 @@
   --border: var(--line);
   --input: var(--line);
   --ring: var(--brand);
-  /* Graphique mensuel : encaissé bleu, dépenses orange (paire daltonien-compatible) */
-  --chart-1: #2a78d6;
-  --chart-2: #eb6834;
-  --radius: 14px;
+  /* Graphique mensuel : encaissé encre, dépenses citron */
+  --chart-1: #16171c;
+  --chart-2: #d4f24d;
+  --radius: 18px;
+}
+
+/* Jours non dus : hachures à 45°, sans valeur de paiement.
+   Motif unique — ne jamais redupliquer le gradient dans les composants. */
+@utility hachures-non-du {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--hatch-a) 0 3px,
+    var(--hatch-b) 3px 6px
+  );
+}
+
+/* Placeholder d'une photo absente */
+@utility hachures-photo {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--skeleton) 0 6px,
+    var(--hatch-photo) 6px 12px
+  );
 }
 
 @layer base {

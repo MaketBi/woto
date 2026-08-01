@@ -65,7 +65,7 @@ export function JoursNonDus({
       <button
         type="button"
         onClick={() => setOuvert(true)}
-        className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold"
+        className="flex min-h-[46px] w-full items-center justify-center rounded-[18px] bg-surface text-sm font-semibold"
       >
         Déclarer des jours non dus
       </button>
@@ -92,10 +92,10 @@ export function JoursNonDus({
                     type="button"
                     onClick={() => setMotif(m.valeur)}
                     className={clsx(
-                      "flex min-h-11 items-center rounded-full border px-4 text-sm font-semibold",
+                      "flex min-h-11 items-center rounded-full px-4 text-sm font-semibold",
                       motif === m.valeur
-                        ? "border-brand bg-brand-soft text-brand"
-                        : "border-line bg-surface text-ink"
+                        ? "bg-ink text-white"
+                        : "bg-plane text-ink"
                     )}
                   >
                     {m.libelle}
@@ -121,7 +121,7 @@ export function JoursNonDus({
                     setDebut(e.target.value);
                     if (fin < e.target.value) setFin(e.target.value);
                   }}
-                  className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold"
+                  className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] font-semibold"
                 />
               </div>
               <div>
@@ -137,7 +137,7 @@ export function JoursNonDus({
                   value={fin}
                   min={debut}
                   onChange={(e) => e.target.value && setFin(e.target.value)}
-                  className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold"
+                  className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] font-semibold"
                 />
               </div>
             </div>
@@ -155,7 +155,7 @@ export function JoursNonDus({
                 value={commentaire}
                 onChange={(e) => setCommentaire(e.target.value)}
                 placeholder="Voiture au garage…"
-                className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] placeholder:text-ink-4"
+                className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] placeholder:text-ink-4"
               />
             </div>
 
@@ -163,7 +163,7 @@ export function JoursNonDus({
               type="button"
               onClick={enregistrer}
               disabled={enCours}
-              className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand text-base font-semibold text-white disabled:opacity-60"
+              className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-base font-bold text-white disabled:opacity-60"
             >
               {enCours ? "Enregistrement…" : "Enregistrer"}
             </button>

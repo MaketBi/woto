@@ -6,12 +6,12 @@ import { GraphiqueRentabilite } from "./graphique";
 
 export const metadata = { title: "Rentabilité — Woto" };
 
-// Dégradé orange de la charte pour la répartition par catégorie
+// Répartition par catégorie : encre → citron → citron sombre → gris
 const COULEURS_CATEGORIE: Record<string, string> = {
-  entretien: "#eb6834",
-  assurance: "#f09367",
-  controle_technique: "#f6bfa4",
-  divers: "#e6e5df",
+  entretien: "var(--ink)",
+  assurance: "var(--lime)",
+  controle_technique: "var(--lime-dark)",
+  divers: "var(--line)",
 };
 const ORDRE = ["entretien", "assurance", "controle_technique", "divers"];
 
@@ -53,7 +53,7 @@ export default async function PageRentabilite() {
       <h1 className="text-xl font-bold tracking-[-0.3px]">Rentabilité</h1>
 
       {/* Net sur 6 mois */}
-      <div className="rounded-[14px] border border-line bg-surface p-4">
+      <div className="rounded-[18px] bg-surface p-4">
         <div className="text-[13px] font-medium text-ink-2">Net sur 6 mois</div>
         <div className="mt-1 text-[34px] font-bold tracking-[-1.2px] tabular-nums">
           {fcfa(net)}
@@ -65,12 +65,12 @@ export default async function PageRentabilite() {
       </div>
 
       {/* Graphique barres groupées */}
-      <div className="rounded-[14px] border border-line bg-surface px-3.5 pb-3 pt-4">
+      <div className="rounded-[18px] bg-surface px-3.5 pb-3 pt-4">
         <GraphiqueRentabilite mois={donnees.mois} moisCourant={moisCourant} />
       </div>
 
       {/* Répartition par catégorie */}
-      <div className="rounded-[14px] border border-line bg-surface p-4">
+      <div className="rounded-[18px] bg-surface p-4">
         <h2 className="mb-3 text-sm font-semibold">
           Dépenses par catégorie · 6 mois
         </h2>

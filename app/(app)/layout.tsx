@@ -6,7 +6,7 @@ export default function AppLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-[412px] flex-col">
-      <main className="flex flex-1 flex-col gap-2.5 px-4 pb-2 pt-3">
+      <main className="flex flex-1 flex-col gap-3 px-4 pb-3 pt-1.5">
         {children}
       </main>
       <BarreOnglets />

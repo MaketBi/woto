@@ -33,7 +33,7 @@ export function BoutonSupprimerInspection({
       <button
         type="button"
         onClick={() => setConfirmation(true)}
-        className="flex min-h-11 items-center px-2 text-[13px] font-semibold text-crit"
+        className="flex min-h-11 items-center px-2 text-[13px] font-semibold text-crit-ink"
       >
         Supprimer
       </button>
@@ -46,7 +46,7 @@ export function BoutonSupprimerInspection({
         type="button"
         onClick={supprimer}
         disabled={enCours}
-        className="flex min-h-11 items-center px-2 text-[13px] font-bold text-crit disabled:opacity-60"
+        className="flex min-h-11 items-center px-2 text-[13px] font-bold text-crit-ink disabled:opacity-60"
       >
         {enCours ? "Suppression…" : "Confirmer"}
       </button>

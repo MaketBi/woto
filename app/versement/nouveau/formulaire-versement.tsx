@@ -100,7 +100,7 @@ export function FormulaireVersement({
 
       <div className="flex flex-1 flex-col gap-3.5 px-4">
         {/* Montant */}
-        <div className="rounded-[14px] border border-line bg-surface p-[18px]">
+        <div className="rounded-[18px] bg-surface p-[18px]">
           <div className="text-[13px] font-medium text-ink-2">
             Montant du jour
           </div>
@@ -146,7 +146,7 @@ export function FormulaireVersement({
         </div>
 
         {/* Date + mode */}
-        <div className="overflow-hidden rounded-[14px] border border-line bg-surface">
+        <div className="overflow-hidden rounded-[18px] bg-surface">
           <button
             type="button"
             onClick={() => setDateOuverte((o) => !o)}
@@ -167,7 +167,7 @@ export function FormulaireVersement({
                 value={date}
                 max={aujourdhui}
                 onChange={(e) => e.target.value && setDate(e.target.value)}
-                className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold"
+                className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] font-semibold"
                 aria-label="Date du versement"
               />
             </div>
@@ -183,13 +183,16 @@ export function FormulaireVersement({
                   type="button"
                   onClick={() => setMode(m.valeur)}
                   className={clsx(
-                    "flex min-h-12 items-center justify-center rounded-[10px] text-[15px] font-semibold",
+                    "flex min-h-[50px] items-center justify-center gap-2 rounded-full text-[15px]",
                     mode === m.valeur
-                      ? "border-[1.5px] border-brand bg-brand-soft text-brand"
-                      : "border border-line bg-surface text-ink"
+                      ? "bg-ink font-bold text-white"
+                      : "bg-plane font-semibold text-ink"
                   )}
                 >
                   {m.libelle}
+                  {mode === m.valeur && (
+                    <span className="size-[7px] rounded-full bg-lime" />
+                  )}
                 </button>
               ))}
             </div>
@@ -203,7 +206,7 @@ export function FormulaireVersement({
         </div>
 
         {/* Note */}
-        <div className="rounded-[14px] border border-line bg-surface p-3.5">
+        <div className="rounded-[18px] bg-surface p-3.5">
           <label
             htmlFor="note"
             className="text-sm font-medium text-ink-2"
@@ -221,7 +224,7 @@ export function FormulaireVersement({
         </div>
 
         {/* Solde après */}
-        <div className="flex justify-between rounded-xl border border-brand/15 bg-brand-soft px-3.5 py-3">
+        <div className="flex justify-between rounded-[18px] bg-brand-soft px-4 py-3.5">
           <span className="text-[13px] font-medium text-ink-2">
             Solde après enregistrement
           </span>
@@ -237,7 +240,7 @@ export function FormulaireVersement({
           type="button"
           onClick={enregistrer}
           disabled={!montantValide || enCours}
-          className="flex min-h-[54px] w-full items-center justify-center rounded-xl bg-brand text-[17px] font-semibold text-white disabled:opacity-60"
+          className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-[17px] font-bold text-white disabled:opacity-60"
         >
           {enCours
             ? "Enregistrement…"

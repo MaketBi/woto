@@ -122,7 +122,7 @@ export function ListeEcheances({
       <button
         type="button"
         onClick={ouvrirCreation}
-        className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand text-base font-semibold text-white"
+        className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-base font-bold text-white"
       >
         Ajouter une échéance
       </button>
@@ -132,7 +132,7 @@ export function ListeEcheances({
           Aucune échéance pour l&apos;instant.
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-line bg-surface">
+        <div className="overflow-hidden rounded-[18px] bg-surface">
           {echeances.map((e, i) => {
             const faite = e.statut === "fait";
             const nbJours = e.date_echeance
@@ -188,7 +188,7 @@ export function ListeEcheances({
                     faite
                       ? "bg-good-soft text-good-ink"
                       : urgente
-                        ? "bg-crit-soft text-crit"
+                        ? "bg-crit-soft text-crit-ink"
                         : "bg-plane text-ink-2"
                   )}
                 >
@@ -220,10 +220,10 @@ export function ListeEcheances({
                   type="button"
                   onClick={() => setType(t.valeur)}
                   className={clsx(
-                    "flex min-h-11 items-center rounded-full border px-4 text-sm font-semibold",
+                    "flex min-h-11 items-center rounded-full px-4 text-sm font-semibold",
                     type === t.valeur
-                      ? "border-brand bg-brand-soft text-brand"
-                      : "border-line bg-surface text-ink"
+                      ? "bg-ink text-white"
+                      : "bg-plane text-ink"
                   )}
                 >
                   {t.libelle}
@@ -244,7 +244,7 @@ export function ListeEcheances({
                 value={libelle}
                 onChange={(e) => setLibelle(e.target.value)}
                 placeholder="Renouvellement assurance…"
-                className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] placeholder:text-ink-4"
+                className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] placeholder:text-ink-4"
               />
             </div>
 
@@ -261,7 +261,7 @@ export function ListeEcheances({
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold"
+                  className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] font-semibold"
                 />
               </div>
               <div>
@@ -280,7 +280,7 @@ export function ListeEcheances({
                   value={Number.isNaN(montant) ? "" : montant}
                   onChange={(e) => setMontant(parseInt(e.target.value, 10))}
                   placeholder="—"
-                  className="min-h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold tabular-nums placeholder:text-ink-4"
+                  className="min-h-11 w-full rounded-[14px] bg-plane px-3 text-[15px] font-semibold tabular-nums placeholder:text-ink-4"
                 />
               </div>
             </div>
@@ -298,7 +298,7 @@ export function ListeEcheances({
                   step={1}
                   value={Number.isNaN(rappel) ? "" : rappel}
                   onChange={(e) => setRappel(parseInt(e.target.value, 10))}
-                  className="w-16 rounded-[10px] border border-line bg-surface px-2 py-2 text-right text-[15px] font-semibold tabular-nums"
+                  className="w-16 rounded-[14px] bg-plane px-2 py-2 text-right text-[15px] font-semibold tabular-nums"
                 />
                 <span className="text-sm text-ink-3">jours</span>
               </div>
@@ -308,7 +308,7 @@ export function ListeEcheances({
               type="button"
               onClick={enregistrer}
               disabled={enCours || !libelle.trim()}
-              className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand text-base font-semibold text-white disabled:opacity-60"
+              className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-base font-bold text-white disabled:opacity-60"
             >
               {enCours ? "Enregistrement…" : "Enregistrer"}
             </button>
@@ -318,7 +318,7 @@ export function ListeEcheances({
                 type="button"
                 onClick={() => supprimer(enEdition)}
                 disabled={enCours}
-                className="flex min-h-11 w-full items-center justify-center text-sm font-semibold text-crit"
+                className="flex min-h-11 w-full items-center justify-center text-sm font-semibold text-crit-ink"
               >
                 Supprimer cette échéance
               </button>

@@ -1,5 +1,9 @@
 import { clsx } from "clsx";
-import type { JourEtat } from "@/lib/libelles";
+import {
+  CLASSES_ETAT_JOUR,
+  CLASSE_AUJOURDHUI,
+  type JourEtat,
+} from "@/lib/libelles";
 
 // Grille mensuelle en LECTURE SEULE — espace chauffeur et page publique.
 // Aucune action, aucun état client : un simple rendu serveur.
@@ -7,20 +11,9 @@ import type { JourEtat } from "@/lib/libelles";
 const ENTETES = ["L", "M", "M", "J", "V", "S", "D"];
 
 function classesCase(jour: JourEtat, estAujourdhui: boolean): string {
-  const base =
-    "aspect-square rounded-[9px] flex items-center justify-center text-sm";
-  const parEtat = {
-    verse: "bg-good-soft font-semibold text-good",
-    partiel: "bg-warn-soft font-semibold text-ink",
-    non_verse: "bg-crit-soft font-bold text-crit",
-    non_du:
-      "font-semibold text-ink-3 [background:repeating-linear-gradient(45deg,#eceae5_0_3px,#d3d2cb_3px_6px)]",
-    a_venir: "bg-surface border-[1.5px] border-line-2 font-semibold text-ink-2",
-  }[jour.etat];
   return clsx(
-    base,
-    parEtat,
-    estAujourdhui && "border-[1.5px] border-brand bg-surface font-bold text-brand"
+    "aspect-square rounded-full flex items-center justify-center text-[13px]",
+    estAujourdhui ? CLASSE_AUJOURDHUI : CLASSES_ETAT_JOUR[jour.etat]
   );
 }
 
@@ -37,8 +30,8 @@ export function CalendrierLecture({
     : 0;
 
   return (
-    <div className="rounded-[14px] border border-line bg-surface p-3">
-      <div className="mb-1.5 grid grid-cols-7 gap-1.5">
+    <div className="rounded-[22px] bg-surface px-3.5 py-4">
+      <div className="mb-2 grid grid-cols-7 gap-1.5">
         {ENTETES.map((lettre, i) => (
           <div
             key={i}

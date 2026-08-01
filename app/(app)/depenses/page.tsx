@@ -42,13 +42,13 @@ export default async function PageDepenses() {
       {/* En-tête */}
       <div className="flex items-end justify-between">
         <h1 className="text-xl font-bold tracking-[-0.3px]">Dépenses</h1>
-        <span className="flex min-h-[34px] items-center rounded-lg border border-line bg-surface px-2.5 text-xs font-semibold text-ink-2">
+        <span className="flex min-h-[34px] items-center rounded-[14px] bg-surface px-2.5 text-xs font-semibold text-ink-2">
           {nomMoisMaj}
         </span>
       </div>
 
       {/* Total du mois */}
-      <div className="rounded-[14px] border border-line bg-surface p-4">
+      <div className="rounded-[18px] bg-surface p-4">
         <div className="text-[13px] font-medium text-ink-2">Total du mois</div>
         <div className="mt-1 text-[34px] font-bold tracking-[-1.2px] tabular-nums">
           {fcfa(donnees.totalMois)}
@@ -70,7 +70,7 @@ export default async function PageDepenses() {
           return (
             <div
               key={cat}
-              className="rounded-xl border border-line bg-surface px-[13px] py-3"
+              className="rounded-[18px] bg-surface px-[13px] py-3"
             >
               <div className="text-[13px] font-semibold">
                 {LIBELLES_CATEGORIE[cat]}
@@ -92,14 +92,14 @@ export default async function PageDepenses() {
       {/* CTA */}
       <Link
         href="/depenses/nouvelle"
-        className="flex min-h-[52px] items-center justify-center rounded-xl bg-brand text-base font-semibold text-white"
+        className="flex min-h-[58px] items-center justify-center rounded-full bg-ink text-base font-bold text-white"
       >
         Ajouter une dépense
       </Link>
 
       <Link
         href="/depenses/rentabilite"
-        className="flex min-h-[46px] items-center justify-between rounded-xl border border-line bg-surface px-3.5 text-sm font-semibold"
+        className="flex min-h-[46px] items-center justify-between rounded-[18px] bg-surface px-3.5 text-sm font-semibold"
       >
         Rentabilité sur 6 mois
         <span className="text-[15px] font-semibold text-ink-4">›</span>
@@ -115,7 +115,7 @@ export default async function PageDepenses() {
           </div>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-line bg-surface">
+        <div className="overflow-hidden rounded-[18px] bg-surface">
           {donnees.liste.map((d, i) => (
             <div
               key={d.id}

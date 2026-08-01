@@ -12,6 +12,10 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import {
+  BoutonPrimaire,
+  BoutonSecondaire,
+} from "@/components/bouton-primaire";
+import {
   creerVersement,
   supprimerVersement,
   versementsDuJour,
@@ -48,7 +52,7 @@ const PASTILLES = {
     texte: "Partiel",
   },
   non_verse: {
-    classe: "bg-crit-soft text-crit",
+    classe: "bg-crit-soft text-crit-ink",
     point: "bg-crit",
     texte: "Non versé",
   },
@@ -188,45 +192,55 @@ export function FeuilleJour({
     <Sheet open onOpenChange={(o) => !o && onFermer()}>
       <SheetContent
         side="bottom"
-        className="mx-auto max-w-[412px] rounded-t-[20px] border-line bg-surface px-[18px] pb-[22px] pt-2.5"
+        className="mx-auto max-w-[412px] rounded-t-[26px] border-none bg-surface px-[18px] pb-6 pt-2.5"
       >
         <div className="mx-auto mb-3.5 h-1 w-[38px] rounded-sm bg-line" />
-        <SheetHeader className="p-0 text-left">
-          <SheetTitle className="text-xl font-bold tracking-[-0.3px]">
-            {titre}
-          </SheetTitle>
-          <span
-            className={clsx(
-              "inline-flex w-fit items-center gap-[7px] rounded-full px-[11px] py-1.5",
-              pastille.classe
-            )}
-          >
-            <span className={clsx("size-2 rounded-full", pastille.point)} />
-            <span className="text-[13px] font-semibold">
-              {jour.etat === "non_du" && jour.motif
-                ? `Jour non dû · ${LIBELLES_MOTIF[jour.motif] ?? jour.motif}`
-                : pastille.texte}
+        <SheetHeader className="flex-row items-start justify-between gap-3 p-0 text-left">
+          <div>
+            <SheetTitle className="text-[22px] font-bold tracking-[-0.6px]">
+              {titre}
+            </SheetTitle>
+            <span
+              className={clsx(
+                "mt-2 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1.5",
+                pastille.classe
+              )}
+            >
+              <span className={clsx("size-2 rounded-full", pastille.point)} />
+              <span className="text-[13px] font-semibold">
+                {jour.etat === "non_du" && jour.motif
+                  ? `Jour non dû · ${LIBELLES_MOTIF[jour.motif] ?? jour.motif}`
+                  : pastille.texte}
+              </span>
             </span>
-          </span>
+          </div>
+          <button
+            type="button"
+            onClick={onFermer}
+            aria-label="Fermer"
+            className="grid size-9 shrink-0 place-items-center rounded-full bg-fill-soft text-[15px] font-semibold text-ink-2"
+          >
+            ✕
+          </button>
         </SheetHeader>
 
         {/* Détail du jour */}
-        <div className="mt-3.5 overflow-hidden rounded-xl border border-line">
-          <div className="flex justify-between border-b border-line-soft px-3.5 py-3">
+        <div className="mt-3.5 rounded-2xl bg-plane px-4 py-1">
+          <div className="flex justify-between border-b border-skeleton py-3">
             <span className="text-[13px] font-medium text-ink-2">
               Attendu ce jour
             </span>
-            <span className="text-sm font-semibold tabular-nums">
+            <span className="text-sm font-bold tabular-nums">
               {jour.attendu > 0 ? fcfa(jour.attendu) : "—"}
             </span>
           </div>
-          <div className="flex justify-between border-b border-line-soft px-3.5 py-3">
+          <div className="flex justify-between border-b border-skeleton py-3">
             <span className="text-[13px] font-medium text-ink-2">Reçu</span>
             <span
               className={clsx(
-                "text-sm font-semibold tabular-nums",
+                "text-sm font-bold tabular-nums",
                 jour.recu === 0 && jour.attendu > 0 && jour.etat === "non_verse"
-                  ? "text-crit"
+                  ? "text-crit-ink"
                   : jour.recu > 0
                     ? "text-good"
                     : "text-ink"
@@ -235,11 +249,11 @@ export function FeuilleJour({
               {fcfa(jour.recu)}
             </span>
           </div>
-          <div className="flex justify-between px-3.5 py-3">
+          <div className="flex justify-between py-3">
             <span className="text-[13px] font-medium text-ink-2">
               Mode habituel
             </span>
-            <span className="text-sm font-semibold">
+            <span className="text-sm font-bold">
               {libelleMode(dernierMode).charAt(0).toUpperCase() +
                 libelleMode(dernierMode).slice(1)}
             </span>
@@ -250,25 +264,19 @@ export function FeuilleJour({
         <div className="mt-3.5 flex flex-col gap-2">
           {duEtNonRegle && choixMotif === null && (
             <>
-              <button
-                type="button"
+              <BoutonPrimaire
                 onClick={() => versementUnTap(jour.attendu)}
                 disabled={enCours}
-                className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand text-base font-semibold text-white disabled:opacity-60"
               >
                 {enCours ? "Enregistrement…" : `Enregistrer ${fcfa(jour.attendu)}`}
-              </button>
+              </BoutonPrimaire>
               <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setChoixMotif("conges")}
-                  className="flex min-h-[46px] flex-1 items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold"
-                >
-                  Marquer jour non dû
-                </button>
+                <BoutonSecondaire onClick={() => setChoixMotif("conges")}>
+                  Jour non dû
+                </BoutonSecondaire>
                 <Link
                   href={`/versement/nouveau?date=${jour.jour}&montant=libre&retour=/calendrier`}
-                  className="flex min-h-[46px] flex-1 items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold"
+                  className="flex min-h-12 flex-1 items-center justify-center rounded-full bg-fill-soft text-[13px] font-semibold text-ink"
                 >
                   Montant partiel
                 </Link>
@@ -277,7 +285,7 @@ export function FeuilleJour({
           )}
 
           {duEtNonRegle && choixMotif !== null && (
-            <div className="rounded-xl border border-line p-3.5">
+            <div className="rounded-2xl bg-plane p-4">
               <div className="mb-2.5 text-sm font-medium text-ink-2">
                 Pourquoi ce jour n&apos;est-il pas dû ?
               </div>
@@ -288,44 +296,44 @@ export function FeuilleJour({
                     type="button"
                     onClick={() => setChoixMotif(m.valeur)}
                     className={clsx(
-                      "flex min-h-11 items-center rounded-full border px-4 text-sm font-semibold",
+                      "flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold",
                       choixMotif === m.valeur
-                        ? "border-brand bg-brand-soft text-brand"
-                        : "border-line bg-surface text-ink"
+                        ? "bg-ink text-white"
+                        : "bg-surface text-ink"
                     )}
                   >
                     {m.libelle}
+                    {choixMotif === m.valeur && (
+                      <span className="size-[7px] rounded-full bg-lime" />
+                    )}
                   </button>
                 ))}
               </div>
-              <button
-                type="button"
+              <BoutonPrimaire
                 onClick={() => marquerNonDu(choixMotif)}
                 disabled={enCours}
-                className="mt-3 flex min-h-[46px] w-full items-center justify-center rounded-xl bg-brand text-sm font-semibold text-white disabled:opacity-60"
+                className="mt-3 min-h-12"
               >
                 {enCours ? "Enregistrement…" : "Confirmer le jour non dû"}
-              </button>
+              </BoutonPrimaire>
             </div>
           )}
 
           {jour.etat === "partiel" && (
             <>
-              <button
-                type="button"
+              <BoutonPrimaire
                 onClick={() => versementUnTap(reste)}
                 disabled={enCours || reste === 0}
-                className="flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand text-base font-semibold text-white disabled:opacity-60"
               >
                 {enCours ? "Enregistrement…" : `Compléter · reste ${fcfa(reste)}`}
-              </button>
+              </BoutonPrimaire>
               {versements.map((v) => (
                 <button
                   key={v.id}
                   type="button"
                   onClick={() => supprimer(v.id)}
                   disabled={enCours}
-                  className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold text-crit"
+                  className="flex min-h-12 w-full items-center justify-center rounded-full bg-fill-soft text-[13px] font-semibold text-crit-ink"
                 >
                   Supprimer le versement de {fcfa(v.montant)}
                 </button>
@@ -337,7 +345,7 @@ export function FeuilleJour({
             <>
               <Link
                 href={`/versement/nouveau?date=${jour.jour}&montant=libre&retour=/calendrier`}
-                className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold"
+                className="flex min-h-12 w-full items-center justify-center rounded-full bg-fill-soft text-[13px] font-semibold text-ink"
               >
                 Ajouter un autre versement ce jour
               </Link>
@@ -347,7 +355,7 @@ export function FeuilleJour({
                   type="button"
                   onClick={() => supprimer(v.id)}
                   disabled={enCours}
-                  className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold text-crit"
+                  className="flex min-h-12 w-full items-center justify-center rounded-full bg-fill-soft text-[13px] font-semibold text-crit-ink"
                 >
                   Supprimer le versement de {fcfa(v.montant)}
                 </button>
@@ -357,14 +365,9 @@ export function FeuilleJour({
 
           {jour.etat === "non_du" &&
             (ajustement ? (
-              <button
-                type="button"
-                onClick={repasserEnDu}
-                disabled={enCours}
-                className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold disabled:opacity-60"
-              >
+              <BoutonSecondaire onClick={repasserEnDu} disabled={enCours}>
                 {enCours ? "Un instant…" : "Repasser en jour dû"}
-              </button>
+              </BoutonSecondaire>
             ) : jour.motif ? null : (
               <p className="text-center text-[13px] text-ink-3">
                 Jour non dû par le contrat

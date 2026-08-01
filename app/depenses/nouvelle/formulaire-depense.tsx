@@ -71,7 +71,7 @@ export function FormulaireDepense({
 
       <div className="flex flex-1 flex-col gap-3.5 px-4">
         {/* Catégorie */}
-        <div className="rounded-[14px] border border-line bg-surface p-3.5">
+        <div className="rounded-[18px] bg-surface p-3.5">
           <div className="mb-2.5 text-sm font-medium text-ink-2">Catégorie</div>
           <div className="grid grid-cols-2 gap-2">
             {CATEGORIES.map((c) => (
@@ -80,20 +80,23 @@ export function FormulaireDepense({
                 type="button"
                 onClick={() => setCategorie(c.valeur)}
                 className={clsx(
-                  "flex min-h-12 items-center justify-center rounded-[10px] px-2 text-center text-sm font-semibold leading-tight",
+                  "flex min-h-[50px] items-center justify-center gap-2 rounded-full px-2 text-center text-sm leading-tight",
                   categorie === c.valeur
-                    ? "border-[1.5px] border-brand bg-brand-soft text-brand"
-                    : "border border-line bg-surface text-ink"
+                    ? "bg-ink font-bold text-white"
+                    : "bg-plane font-semibold text-ink"
                 )}
               >
                 {c.libelle}
+                {categorie === c.valeur && (
+                  <span className="size-[7px] shrink-0 rounded-full bg-lime" />
+                )}
               </button>
             ))}
           </div>
         </div>
 
         {/* Montant */}
-        <div className="rounded-[14px] border border-line bg-surface p-[18px]">
+        <div className="rounded-[18px] bg-surface p-[18px]">
           <label htmlFor="montant" className="text-[13px] font-medium text-ink-2">
             Montant
           </label>
@@ -114,7 +117,7 @@ export function FormulaireDepense({
         </div>
 
         {/* Détails */}
-        <div className="overflow-hidden rounded-[14px] border border-line bg-surface">
+        <div className="overflow-hidden rounded-[18px] bg-surface">
           <div className="border-b border-line-soft p-3.5">
             <label
               htmlFor="fournisseur"
@@ -154,7 +157,7 @@ export function FormulaireDepense({
               value={date}
               max={aujourdhui}
               onChange={(e) => e.target.value && setDate(e.target.value)}
-              className="min-h-11 rounded-[10px] border border-line bg-surface px-3 text-[15px] font-semibold"
+              className="min-h-11 rounded-[14px] bg-plane px-3 text-[15px] font-semibold"
             />
           </div>
           <div className="flex min-h-14 items-center justify-between p-3.5">
@@ -185,7 +188,7 @@ export function FormulaireDepense({
           type="button"
           onClick={enregistrer}
           disabled={!montantValide || enCours}
-          className="flex min-h-[54px] w-full items-center justify-center rounded-xl bg-brand text-[17px] font-semibold text-white disabled:opacity-60"
+          className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-[17px] font-bold text-white disabled:opacity-60"
         >
           {enCours
             ? "Enregistrement…"

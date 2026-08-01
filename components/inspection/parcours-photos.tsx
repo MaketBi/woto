@@ -189,7 +189,7 @@ export function ParcoursPhotos({
                 apercus[a.valeur]
                   ? "bg-good"
                   : a.valeur === angleCourant
-                    ? "bg-brand"
+                    ? "bg-ink"
                     : "bg-line"
               )}
             />
@@ -205,7 +205,7 @@ export function ParcoursPhotos({
         </div>
 
         {/* Zone photo */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[14px] border border-line [background:repeating-linear-gradient(45deg,#eceae5_0_6px,#e2e1db_6px_12px)]">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] hachures-photo">
           {apercus[angleCourant] ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -233,7 +233,7 @@ export function ParcoursPhotos({
           type="button"
           onClick={() => champFichier.current?.click()}
           disabled={envoiEnCours}
-          className="flex min-h-[54px] w-full items-center justify-center rounded-xl bg-brand text-[17px] font-semibold text-white disabled:opacity-60"
+          className="flex min-h-[58px] w-full items-center justify-center rounded-full bg-ink text-[17px] font-bold text-white disabled:opacity-60"
         >
           {envoiEnCours
             ? "Envoi…"
@@ -258,7 +258,7 @@ export function ParcoursPhotos({
                   className={clsx(
                     "block w-full overflow-hidden rounded-lg",
                     courant
-                      ? "aspect-square border-[1.5px] border-brand bg-brand-soft"
+                      ? "aspect-square border-[1.5px] border-ink bg-brand-soft"
                       : prise
                         ? "aspect-square border border-good/40"
                         : "aspect-square border border-dashed border-line-2 bg-surface"
@@ -287,7 +287,7 @@ export function ParcoursPhotos({
         </div>
 
         {/* Kilométrage + état */}
-        <div className="flex flex-col gap-3 rounded-[14px] border border-line bg-surface p-3.5">
+        <div className="flex flex-col gap-3 rounded-[18px] bg-surface p-3.5">
           <div className="flex items-center justify-between">
             <label htmlFor="km" className="text-sm font-medium text-ink-2">
               Kilométrage
@@ -318,10 +318,10 @@ export function ParcoursPhotos({
                   type="button"
                   onClick={() => setEtat(n)}
                   className={clsx(
-                    "flex min-h-11 items-center justify-center rounded-[10px] text-[15px]",
+                    "flex min-h-[46px] items-center justify-center rounded-full text-[15px]",
                     etat === n
-                      ? "border-[1.5px] border-brand bg-brand-soft font-bold text-brand"
-                      : "border border-line font-semibold text-ink-2"
+                      ? "bg-ink font-bold text-lime"
+                      : "bg-plane font-semibold text-ink-2"
                   )}
                 >
                   {n}
@@ -355,10 +355,10 @@ export function ParcoursPhotos({
           onClick={terminer}
           disabled={!toutesPrises || finEnCours}
           className={clsx(
-            "flex min-h-12 w-full items-center justify-center rounded-xl text-[15px] font-semibold",
+            "flex min-h-[52px] w-full items-center justify-center rounded-full text-[15px] font-semibold",
             toutesPrises
-              ? "bg-brand text-white"
-              : "border border-line bg-surface text-ink-3"
+              ? "bg-ink text-white"
+              : "bg-surface text-ink-3"
           )}
         >
           {finEnCours

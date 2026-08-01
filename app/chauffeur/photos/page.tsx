@@ -31,7 +31,7 @@ export default async function PagePhotosChauffeur() {
 
       <Link
         href="/chauffeur/photos/nouveau"
-        className="flex min-h-[52px] items-center justify-center rounded-xl bg-brand text-base font-semibold text-white"
+        className="flex min-h-[58px] items-center justify-center rounded-full bg-ink text-base font-bold text-white"
       >
         Faire le contrôle photo
       </Link>

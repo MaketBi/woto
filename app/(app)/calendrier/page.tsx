@@ -69,23 +69,23 @@ export default async function PageCalendrier({
         <Link
           href={`/calendrier?mois=${moisPrecedent(moisISO)}`}
           aria-label="Mois précédent"
-          className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-2"
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-2"
         >
           ‹
         </Link>
-        <h1 className="text-xl font-bold tracking-[-0.3px]">{titre}</h1>
+        <h1 className="text-2xl font-bold tracking-[-0.9px]">{titre}</h1>
         {suivantAutorise ? (
           <Link
             href={`/calendrier?mois=${moisSuivant(moisISO)}`}
             aria-label="Mois suivant"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-2"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-2"
           >
             ›
           </Link>
         ) : (
           <span
             aria-hidden
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-4"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-4"
           >
             ›
           </span>
@@ -93,8 +93,8 @@ export default async function PageCalendrier({
       </div>
 
       {/* Grille */}
-      <div className="rounded-[14px] border border-line bg-surface p-3">
-        <div className="mb-1.5 grid grid-cols-7 gap-1.5">
+      <div className="rounded-[22px] bg-surface px-3.5 py-4">
+        <div className="mb-2 grid grid-cols-7 gap-1.5">
           {ENTETES.map((e, i) => (
             <div
               key={i}
@@ -116,49 +116,53 @@ export default async function PageCalendrier({
       </div>
 
       {/* Légende */}
-      <div className="grid grid-cols-2 gap-2 rounded-xl border border-line bg-surface px-3.5 py-[13px] gap-x-3.5">
+      <div className="grid grid-cols-2 gap-2 gap-x-3.5 rounded-[18px] bg-surface px-4 py-[15px]">
         <div className="flex items-center gap-2">
-          <span className="size-3.5 rounded border border-good/25 bg-good-soft" />
+          <span className="size-3.5 rounded-full bg-good-soft" />
           <span className="text-xs font-medium text-ink-2">Versé</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-3.5 rounded border border-warn/40 bg-warn-soft" />
+          <span className="size-3.5 rounded-full bg-warn-soft" />
           <span className="text-xs font-medium text-ink-2">Partiel</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-3.5 rounded border border-crit/25 bg-crit-soft" />
+          <span className="size-3.5 rounded-full bg-crit" />
           <span className="text-xs font-medium text-ink-2">Non versé</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-3.5 rounded [background:repeating-linear-gradient(45deg,#eceae5_0_3px,#d3d2cb_3px_6px)]" />
+          <span className="hachures-non-du size-3.5 rounded-full" />
           <span className="text-xs font-medium text-ink-2">Jour non dû</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-3.5 rounded border border-line-2 bg-surface" />
+          <span className="size-3.5 rounded-full border-[1.5px] border-line-2" />
           <span className="text-xs font-medium text-ink-2">À venir</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="size-3.5 rounded-full bg-ink" />
+          <span className="text-xs font-medium text-ink-2">Aujourd&apos;hui</span>
         </div>
       </div>
 
       {/* Totaux du mois */}
-      <div className="grid grid-cols-3 gap-2.5">
-        <div className="rounded-xl border border-line bg-surface p-3">
+      <div className="grid grid-cols-3 gap-3">
+        <div className="rounded-[18px] bg-surface px-3.5 py-[15px]">
           <div className="text-xs font-medium text-ink-2">Attendu</div>
           <div className="mt-1 text-[17px] font-bold tracking-[-0.4px] tabular-nums">
             {fcfa(attendu)}
           </div>
         </div>
-        <div className="rounded-xl border border-line bg-surface p-3">
+        <div className="rounded-[18px] bg-surface px-3.5 py-[15px]">
           <div className="text-xs font-medium text-ink-2">Reçu</div>
           <div className="mt-1 text-[17px] font-bold tracking-[-0.4px] text-good tabular-nums">
             {fcfa(recu)}
           </div>
         </div>
-        <div className="rounded-xl border border-line bg-surface p-3">
+        <div className="rounded-[18px] bg-surface px-3.5 py-[15px]">
           <div className="text-xs font-medium text-ink-2">Manquant</div>
           <div
             className={clsx(
               "mt-1 text-[17px] font-bold tracking-[-0.4px] tabular-nums",
-              manquant > 0 ? "text-crit" : "text-ink"
+              manquant > 0 ? "text-crit-ink" : "text-ink"
             )}
           >
             {fcfa(manquant)}

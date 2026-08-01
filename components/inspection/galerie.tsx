@@ -38,7 +38,7 @@ export function ListeInspections({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-surface">
+    <div className="overflow-hidden rounded-[18px] bg-surface">
       {inspections.map((i, idx) => (
         <Link
           key={i.id}
@@ -68,7 +68,7 @@ export function ListeInspections({
 export function FicheInspection({ inspection }: { inspection: InspectionDetail }) {
   return (
     <>
-      <div className="rounded-[14px] border border-line bg-surface p-4">
+      <div className="rounded-[18px] bg-surface p-4">
         <div className="flex items-baseline justify-between">
           <span className="text-[13px] font-medium text-ink-2">Kilométrage</span>
           <span className="text-sm font-semibold tabular-nums">
@@ -95,7 +95,7 @@ export function FicheInspection({ inspection }: { inspection: InspectionDetail }
       ) : (
         <div className="grid grid-cols-2 gap-2.5">
           {inspection.photos.map((p) => (
-            <figure key={p.chemin} className="overflow-hidden rounded-xl border border-line bg-surface">
+            <figure key={p.chemin} className="overflow-hidden rounded-[18px] bg-surface">
               {p.url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -105,7 +105,7 @@ export function FicheInspection({ inspection }: { inspection: InspectionDetail }
                   loading="lazy"
                 />
               ) : (
-                <div className="aspect-[4/3] w-full [background:repeating-linear-gradient(45deg,#eceae5_0_6px,#e2e1db_6px_12px)]" />
+                <div className="aspect-[4/3] w-full hachures-photo" />
               )}
               <figcaption className="px-2.5 py-1.5 text-[11px] font-semibold text-ink-2">
                 {LIBELLES_ANGLE[p.angle] ?? p.angle}

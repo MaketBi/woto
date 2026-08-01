@@ -16,35 +16,28 @@ export function BarreOnglets() {
 
   return (
     <nav
-      className="sticky bottom-0 z-10 flex border-t border-line bg-surface pt-2"
-      style={{ paddingBottom: "max(14px, env(safe-area-inset-bottom))" }}
+      className="sticky bottom-0 z-10 px-4 pt-2"
+      style={{ paddingBottom: "max(20px, env(safe-area-inset-bottom))" }}
     >
-      {ONGLETS.map(({ href, libelle }) => {
-        const actif =
-          href === "/" ? pathname === "/" : pathname.startsWith(href);
-        return (
-          <Link
-            key={href}
-            href={href}
-            className="flex min-h-11 flex-1 flex-col items-center justify-center gap-[5px]"
-          >
-            <span
+      <div className="flex gap-1 rounded-full bg-surface p-1.5">
+        {ONGLETS.map(({ href, libelle }) => {
+          const actif =
+            href === "/" ? pathname === "/" : pathname.startsWith(href);
+          return (
+            <Link
+              key={href}
+              href={href}
+              aria-current={actif ? "page" : undefined}
               className={clsx(
-                "h-0.5 w-[18px]",
-                actif ? "bg-brand" : "bg-transparent"
-              )}
-            />
-            <span
-              className={clsx(
-                "text-[11px] font-semibold",
-                actif ? "text-brand" : "text-ink-3"
+                "flex min-h-11 flex-1 items-center justify-center rounded-full text-xs font-semibold",
+                actif ? "bg-ink text-white" : "text-ink-2"
               )}
             >
               {libelle}
-            </span>
-          </Link>
-        );
-      })}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

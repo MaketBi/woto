@@ -98,12 +98,12 @@ Pas de librairie de state management. Pas d'ORM par-dessus Supabase. Pas de Reac
 | `docs/04-plan-implementation.md` | **Le plan d'exécution étape par étape — commence ici** |
 | `docs/05-charte-ui.md` | Couleurs, typographie, composants |
 | `supabase/*.sql` | Schéma, RLS, jeu de données de test |
-| `maquette/index.html` | La maquette cliquable validée. **C'est la référence visuelle.** Ouvre-la. |
+| `maquettes-UI/Woto-encre.dc.html` | La maquette validée « Carte d'encre ». **C'est la référence visuelle.** Ouvre-la. |
 
 ## 10. Méthode de travail attendue
 
 - Suis `docs/04-plan-implementation.md` dans l'ordre. Chaque étape a un critère d'acceptation vérifiable.
 - Après chaque étape, lance `npm run build` et `npx tsc --noEmit`. Ne passe pas à la suivante si ça casse.
-- Prends une capture d'écran des pages construites (Playwright) et compare-la à `maquette/index.html` avant de déclarer une étape terminée.
+- Prends une capture d'écran des pages construites et compare-la à `maquettes-UI/Woto-encre.dc.html` avant de déclarer une étape terminée.
 - Ne crée pas de fichiers non demandés (README de sous-dossiers, tests d'exemple, pages de démo).
 - Si une décision produit manque, **arrête-toi et demande** plutôt que d'inventer.

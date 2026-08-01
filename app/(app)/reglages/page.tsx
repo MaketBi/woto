@@ -60,10 +60,10 @@ export default async function PageReglages() {
         Réglages{contrat.chauffeurs ? ` · ${contrat.chauffeurs.nom}` : ""}
       </h1>
 
-      <div className="text-xs font-semibold uppercase tracking-[0.4px] text-ink-3">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-3">
         Contrat
       </div>
-      <div className="overflow-hidden rounded-xl border border-line bg-surface">
+      <div className="overflow-hidden rounded-[18px] bg-surface">
         <div className="flex min-h-11 items-center justify-between border-b border-line-soft px-3.5 py-3">
           <span className="text-sm font-medium text-ink-2">Montant par jour</span>
           <span className="text-[15px] font-semibold tabular-nums">
@@ -84,12 +84,12 @@ export default async function PageReglages() {
         </div>
       </div>
 
-      <div className="mt-1 text-xs font-semibold uppercase tracking-[0.4px] text-ink-3">
+      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-3">
         Échéances
       </div>
       <Link
         href="/reglages/echeances"
-        className="flex min-h-11 items-center justify-between rounded-xl border border-line bg-surface px-3.5 py-3"
+        className="flex min-h-11 items-center justify-between rounded-[18px] bg-surface px-3.5 py-3"
       >
         <span className="text-sm font-medium text-ink-2">
           {prochaine
@@ -101,7 +101,7 @@ export default async function PageReglages() {
             <span
               className={clsx(
                 "text-[15px] font-semibold",
-                urgente ? "text-crit" : "text-ink"
+                urgente ? "text-crit-ink" : "text-ink"
               )}
             >
               {format(parseISO(prochaine.date_echeance), "d MMM", {
@@ -113,7 +113,7 @@ export default async function PageReglages() {
         </span>
       </Link>
 
-      <div className="mt-1 text-xs font-semibold uppercase tracking-[0.4px] text-ink-3">
+      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-3">
         Lien de consultation
       </div>
       <LienPartage

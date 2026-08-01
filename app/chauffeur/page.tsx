@@ -90,7 +90,7 @@ export default async function PageChauffeur({
           </p>
         </div>
         <form action={seDeconnecter}>
-          <button className="flex min-h-[34px] items-center rounded-lg border border-line bg-surface px-2.5 text-xs font-semibold text-ink-2">
+          <button className="flex min-h-[34px] items-center rounded-[14px] bg-surface px-2.5 text-xs font-semibold text-ink-2">
             Se déconnecter
           </button>
         </form>
@@ -107,7 +107,7 @@ export default async function PageChauffeur({
         <div
           className={clsx(
             "my-1.5 text-[40px] font-bold leading-[1.05] tracking-[-1.5px] tabular-nums",
-            enRetard ? "text-crit" : "text-ink"
+            enRetard ? "text-crit-ink" : "text-ink"
           )}
         >
           {fcfa(solde)}
@@ -115,7 +115,7 @@ export default async function PageChauffeur({
         <span
           className={clsx(
             "inline-flex items-center gap-[7px] rounded-full px-3 py-[7px]",
-            enRetard ? "bg-crit-soft text-crit" : "bg-good-soft text-good"
+            enRetard ? "bg-crit-soft text-crit-ink" : "bg-good-soft text-good"
           )}
         >
           <span
@@ -135,7 +135,7 @@ export default async function PageChauffeur({
         <Link
           href={`/chauffeur?mois=${moisPrecedent(moisISO)}`}
           aria-label="Mois précédent"
-          className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-2"
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-2"
         >
           ‹
         </Link>
@@ -144,14 +144,14 @@ export default async function PageChauffeur({
           <Link
             href={`/chauffeur?mois=${moisSuivant(moisISO)}`}
             aria-label="Mois suivant"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-2"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-2"
           >
             ›
           </Link>
         ) : (
           <span
             aria-hidden
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-line bg-surface text-base font-semibold text-ink-4"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-base font-semibold text-ink-4"
           >
             ›
           </span>
@@ -162,13 +162,13 @@ export default async function PageChauffeur({
 
       {/* Totaux */}
       <div className="grid grid-cols-2 gap-2.5">
-        <div className="rounded-xl border border-line bg-surface p-3">
+        <div className="rounded-[18px] bg-surface p-3">
           <div className="text-xs font-medium text-ink-2">Attendu</div>
           <div className="mt-1 text-[18px] font-bold tracking-[-0.4px] tabular-nums">
             {fcfa(attendu)}
           </div>
         </div>
-        <div className="rounded-xl border border-line bg-surface p-3">
+        <div className="rounded-[18px] bg-surface p-3">
           <div className="text-xs font-medium text-ink-2">Reçu</div>
           <div className="mt-1 text-[18px] font-bold tracking-[-0.4px] text-good tabular-nums">
             {fcfa(recu)}
@@ -179,7 +179,7 @@ export default async function PageChauffeur({
       {/* Photos */}
       <Link
         href="/chauffeur/photos"
-        className="flex min-h-[52px] items-center justify-center rounded-xl border border-line bg-surface text-[15px] font-semibold"
+        className="flex min-h-[52px] items-center justify-center rounded-[18px] bg-surface text-[15px] font-semibold"
       >
         Photos du véhicule
       </Link>

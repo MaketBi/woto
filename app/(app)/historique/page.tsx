@@ -59,10 +59,10 @@ export default async function PageHistorique({
             key={f.valeur}
             href={f.valeur === "tout" ? "/historique" : `/historique?filtre=${f.valeur}`}
             className={clsx(
-              "flex min-h-10 items-center rounded-full border px-4 text-sm font-semibold",
+              "flex min-h-10 items-center rounded-full px-4 text-sm font-semibold",
               filtre === f.valeur
-                ? "border-brand bg-brand-soft text-brand"
-                : "border-line bg-surface text-ink"
+                ? "bg-ink text-white"
+                : "bg-plane text-ink"
             )}
           >
             {f.libelle}
@@ -96,7 +96,7 @@ export default async function PageHistorique({
                 <span
                   className={clsx(
                     "text-xs font-semibold tabular-nums",
-                    total < 0 ? "text-crit" : "text-ink-2"
+                    total < 0 ? "text-crit-ink" : "text-ink-2"
                   )}
                 >
                   {filtre === "tout"
@@ -104,7 +104,7 @@ export default async function PageHistorique({
                     : fcfa(Math.abs(total))}
                 </span>
               </div>
-              <div className="overflow-hidden rounded-xl border border-line bg-surface">
+              <div className="overflow-hidden rounded-[18px] bg-surface">
                 {liste.map((m, i) => (
                   <div
                     key={`${m.type}-${m.id}`}
@@ -127,7 +127,7 @@ export default async function PageHistorique({
                       className={clsx(
                         "ml-2 whitespace-nowrap text-sm font-semibold tabular-nums",
                         m.type === "depense"
-                          ? "text-crit"
+                          ? "text-crit-ink"
                           : m.partiel
                             ? "text-warn"
                             : "text-good"

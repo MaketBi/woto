@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -15,7 +16,35 @@ import { fcfa } from "@/lib/format";
 import type { MoisRentabilite } from "@/lib/data";
 
 // Barres groupées 6 mois — encaissé vs dépenses, un seul axe vertical.
-// Couleurs validées daltonisme (charte) : encaissé #2a78d6, dépenses #eb6834.
+// Recharts reçoit des props JS, pas des classes : on lit les tokens de la charte
+// au montage plutôt que de recopier les valeurs hexadécimales ici.
+
+const TOKENS_PAR_DEFAUT = {
+  ligne: "#e6e5df",
+  ink2: "#7c7b76",
+  ink3: "#a9a8a1",
+  encaisse: "#16171c",
+  depenses: "#d4f24d",
+};
+
+function useCouleursCharte() {
+  const [couleurs, setCouleurs] = useState(TOKENS_PAR_DEFAUT);
+
+  useEffect(() => {
+    const styles = getComputedStyle(document.documentElement);
+    const lire = (nom: string, repli: string) =>
+      styles.getPropertyValue(nom).trim() || repli;
+    setCouleurs({
+      ligne: lire("--line", TOKENS_PAR_DEFAUT.ligne),
+      ink2: lire("--ink-2", TOKENS_PAR_DEFAUT.ink2),
+      ink3: lire("--ink-3", TOKENS_PAR_DEFAUT.ink3),
+      encaisse: lire("--chart-1", TOKENS_PAR_DEFAUT.encaisse),
+      depenses: lire("--chart-2", TOKENS_PAR_DEFAUT.depenses),
+    });
+  }, []);
+
+  return couleurs;
+}
 
 export function GraphiqueRentabilite({
   mois,
@@ -24,6 +53,7 @@ export function GraphiqueRentabilite({
   mois: MoisRentabilite[];
   moisCourant: string;
 }) {
+  const couleurs = useCouleursCharte();
   const donnees = mois.map((m) => {
     const nom = format(parseISO(`${m.mois}-01`), "MMM", { locale: fr });
     return {
@@ -38,15 +68,15 @@ export function GraphiqueRentabilite({
       <BarChart data={donnees} margin={{ top: 0, right: 0, bottom: 0, left: -12 }} barGap={3}>
         <XAxis
           dataKey="nom"
-          axisLine={{ stroke: "#e6e5df" }}
+          axisLine={{ stroke: couleurs.ligne }}
           tickLine={false}
-          tick={{ fontSize: 11, fill: "#898781", fontWeight: 500 }}
+          tick={{ fontSize: 11, fill: couleurs.ink3, fontWeight: 500 }}
         />
         <YAxis
           axisLine={false}
           tickLine={false}
           width={44}
-          tick={{ fontSize: 10.5, fill: "#898781" }}
+          tick={{ fontSize: 10.5, fill: couleurs.ink3 }}
           tickFormatter={(n: number) =>
             n === 0 ? "0" : `${Math.round(n / 1000)} k`
           }
@@ -55,12 +85,13 @@ export function GraphiqueRentabilite({
           formatter={(valeur) => fcfa(Number(valeur))}
           labelFormatter={(nom) => String(nom)}
           contentStyle={{
-            borderRadius: 12,
-            border: "1px solid #e6e5df",
+            borderRadius: 14,
+            border: "none",
+            boxShadow: "0 4px 16px rgba(22,23,28,.10)",
             fontSize: 13,
             fontFamily: "inherit",
           }}
-          cursor={{ fill: "rgba(11,11,11,0.04)" }}
+          cursor={{ fill: "rgba(22,23,28,0.05)" }}
         />
         <Legend
           verticalAlign="top"
@@ -69,7 +100,7 @@ export function GraphiqueRentabilite({
           iconType="square"
           iconSize={11}
           formatter={(valeur) => (
-            <span style={{ fontSize: 12, color: "#52514e", fontWeight: 500 }}>
+            <span style={{ fontSize: 12, color: couleurs.ink2, fontWeight: 500 }}>
               {valeur}
             </span>
           )}
@@ -77,15 +108,15 @@ export function GraphiqueRentabilite({
         <Bar
           dataKey="encaisse"
           name="Encaissé"
-          fill="#2a78d6"
-          radius={[3, 3, 0, 0]}
+          fill={couleurs.encaisse}
+          radius={[4, 4, 0, 0]}
           maxBarSize={14}
         />
         <Bar
           dataKey="depenses"
           name="Dépenses"
-          fill="#eb6834"
-          radius={[3, 3, 0, 0]}
+          fill={couleurs.depenses}
+          radius={[4, 4, 0, 0]}
           maxBarSize={14}
         />
       </BarChart>

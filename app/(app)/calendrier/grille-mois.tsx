@@ -2,24 +2,17 @@
 
 import { useState } from "react";
 import { clsx } from "clsx";
-import type { JourEtat } from "@/lib/libelles";
+import {
+  CLASSES_ETAT_JOUR,
+  CLASSE_AUJOURDHUI,
+  type JourEtat,
+} from "@/lib/libelles";
 import { FeuilleJour } from "./feuille-jour";
 
 function classesCase(jour: JourEtat, estAujourdhui: boolean): string {
-  const base = "aspect-square rounded-[9px] flex items-center justify-center text-sm";
-  const parEtat = {
-    verse: "bg-good-soft font-semibold text-good",
-    partiel: "bg-warn-soft font-semibold text-ink",
-    non_verse: "bg-crit-soft font-bold text-crit",
-    non_du:
-      "font-semibold text-ink-3 [background:repeating-linear-gradient(45deg,#eceae5_0_3px,#d3d2cb_3px_6px)]",
-    a_venir: "bg-surface border-[1.5px] border-line-2 font-semibold text-ink-2",
-  }[jour.etat];
   return clsx(
-    base,
-    parEtat,
-    estAujourdhui &&
-      "border-[1.5px] border-brand bg-surface font-bold text-brand"
+    "aspect-square rounded-full flex items-center justify-center text-[13px]",
+    estAujourdhui ? CLASSE_AUJOURDHUI : CLASSES_ETAT_JOUR[jour.etat]
   );
 }
 

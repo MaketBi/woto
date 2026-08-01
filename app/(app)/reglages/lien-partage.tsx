@@ -31,10 +31,15 @@ function Interrupteur({
       onClick={onBascule}
       className={clsx(
         "flex h-7 w-[46px] rounded-full p-[3px] transition-colors duration-150",
-        actif ? "justify-end bg-brand" : "justify-start bg-line"
+        actif ? "justify-end bg-ink" : "justify-start bg-line"
       )}
     >
-      <span className="size-[22px] rounded-full bg-white" />
+      <span
+        className={clsx(
+          "size-[22px] rounded-full",
+          actif ? "bg-lime" : "bg-white"
+        )}
+      />
     </button>
   );
 }
@@ -107,7 +112,7 @@ export function LienPartage({
         type="button"
         onClick={creer}
         disabled={enCours}
-        className="flex min-h-[46px] w-full items-center justify-center rounded-xl border border-line bg-surface text-sm font-semibold disabled:opacity-60"
+        className="flex min-h-[46px] w-full items-center justify-center rounded-[18px] bg-surface text-sm font-semibold disabled:opacity-60"
       >
         {enCours ? "Création…" : "Créer le lien de consultation"}
       </button>
@@ -115,7 +120,7 @@ export function LienPartage({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-surface">
+    <div className="overflow-hidden rounded-[18px] bg-surface">
       <button
         type="button"
         onClick={copier}
@@ -168,7 +173,7 @@ export function LienPartage({
               type="button"
               onClick={regenerer}
               disabled={enCours}
-              className="min-h-9 text-[13px] font-bold text-crit disabled:opacity-60"
+              className="min-h-9 text-[13px] font-bold text-crit-ink disabled:opacity-60"
             >
               {enCours ? "Régénération…" : "Confirmer — l'ancien lien mourra"}
             </button>
