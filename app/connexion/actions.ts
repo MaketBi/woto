@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getSiteUrl } from "@/lib/site-url";
 
 export type EtatConnexion = { erreur?: string; info?: string };
 
@@ -59,7 +60,7 @@ export async function motDePasseOublie(
   }
 
   const supabase = await createClient();
-  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const site = await getSiteUrl();
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${site}/connexion/reinitialiser`,
   });

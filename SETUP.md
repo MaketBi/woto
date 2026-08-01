@@ -50,7 +50,14 @@ Les coller dans `.env.local` (copié depuis `.env.example`).
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` — secrète (OTP chauffeur + page publique)
    - `AT_USERNAME` et `AT_API_KEY` — envoi des SMS (Africa's Talking)
-   - `NEXT_PUBLIC_SITE_URL` — l'URL Vercel une fois connue (ex. `https://woto.vercel.app`)
+
+   **Ne pas reporter `NEXT_PUBLIC_SITE_URL` sur Vercel.** L'app déduit son URL des
+   en-têtes de la requête (`lib/site-url.ts`) : le lien de partage et les emails de
+   réinitialisation suivent donc automatiquement le domaine servi. Copier la valeur
+   locale y installerait un `http://localhost:3000` en production — c'est-à-dire un
+   lien de consultation inutilisable pour le chauffeur. Ne définir cette variable
+   que pour **forcer** un domaine canonique (nom de domaine propre), avec sa vraie
+   valeur (ex. `https://woto.sn`).
 
    Les variables `SUPABASE_DB_*` de `.env.local` ne servent qu'en local (psql) : ne pas les mettre sur Vercel.
 3. Déployer.
