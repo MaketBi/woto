@@ -6,6 +6,7 @@ import { getDonneesPartage } from "@/lib/partage";
 import { fcfa, nombre, jourISO } from "@/lib/format";
 import { libelleMode } from "@/lib/libelles";
 import { CalendrierLecture } from "@/components/calendrier-lecture";
+import { LockupWoto } from "@/components/logo-woto";
 
 // Page publique en LECTURE SEULE — aucune session, aucune Server Action.
 // Les données sont lues côté serveur après validation du jeton (lib/partage.ts).
@@ -49,10 +50,8 @@ export default async function PagePublique({
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-[412px] flex-col">
       {/* Bandeau consultation */}
-      <div className="flex items-baseline justify-between px-4 pb-2.5 pt-3">
-        <span className="text-[13px] font-bold tracking-[0.14em] text-ink-2">
-          WOTO
-        </span>
+      <div className="flex items-center justify-between px-4 pb-2.5 pt-3">
+        <LockupWoto taille={26} />
         <span className="text-[11px] text-ink-3">Lecture seule</span>
       </div>
 
