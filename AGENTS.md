@@ -1,4 +1,4 @@
-# Woto — instructions pour Claude Code
+# Woto — instructions pour Codex
 
 > **Woto** = « voiture » en wolof. Application web de suivi d'un véhicule VTC exploité au Sénégal.
 > Ce fichier est la source de vérité. Lis-le en entier avant d'écrire une ligne de code.
