@@ -52,11 +52,17 @@ export default async function Accueil() {
     semaine,
     encaisseMois,
     depensesMois,
+    totalVerse,
     echeanceProche,
     mouvements,
   } = donnees;
 
   const enRetard = solde > 0;
+  // Le solde est cumulé depuis le début du contrat, pas sur le mois affiché :
+  // sans ce repère, le badge du mois voisin le laisse croire.
+  const debutContrat = format(parseISO(contrat.date_debut), "d MMMM", {
+    locale: fr,
+  });
   const nomMois = format(parseISO(aujourdhui), "MMMM", { locale: fr });
   const nomMoisMaj = nomMois.charAt(0).toUpperCase() + nomMois.slice(1);
   // Le hero s'adresse au chauffeur par son prénom : « Solde de Moussa ».
@@ -74,9 +80,11 @@ export default async function Accueil() {
           ? `${joursPartiels} partiel${joursPartiels > 1 ? "s" : ""}`
           : null,
       ].filter(Boolean);
+      // Le grand chiffre affiche le total versé : c'est ici que le montant
+      // encore dû doit apparaître, sinon il n'est visible nulle part en haut.
       pastille = {
         point: "bg-crit",
-        texte: morceaux.join(" · ") || "Solde à régler",
+        texte: [`Doit ${fcfa(solde)}`, ...morceaux].join(" · "),
       };
     } else {
       const nbJours = dernierVersement
@@ -120,7 +128,7 @@ export default async function Accueil() {
       <div className="rounded-[24px] bg-ink p-5 text-white">
         <div className="flex items-center justify-between gap-3">
           <span className="text-xs font-semibold text-on-ink-muted">
-            Solde de {prenom}
+            Versé par {prenom}
           </span>
           <span className="shrink-0 rounded-full bg-lime px-2.5 py-[5px] text-[11px] font-semibold text-ink">
             {nomMoisMaj}
@@ -129,18 +137,19 @@ export default async function Accueil() {
         <div
           className={clsx(
             "mt-3.5 text-[56px] font-extrabold leading-none tracking-[-2.6px] tabular-nums",
-            aucunVersement
-              ? "text-on-ink-muted"
-              : enRetard
-                ? "text-crit"
-                : "text-white"
+            aucunVersement ? "text-on-ink-muted" : "text-white"
           )}
         >
-          {nombre(solde)}
+          {nombre(totalVerse)}
           <span className="ml-1 text-2xl tracking-normal text-on-ink-muted">
             F
           </span>
         </div>
+        {!aucunVersement && (
+          <p className="mt-1.5 text-[11px] font-medium text-on-ink-muted">
+            depuis le {debutContrat}
+          </p>
+        )}
         {aucunVersement ? (
           <p className="mt-3 text-[13px] leading-[1.4] text-on-ink-muted">
             Aucun versement enregistré. Le suivi démarre dès le premier

@@ -97,6 +97,8 @@ export type Accueil = {
   semaine: JourEtat[]; // les jours actifs de la semaine en cours, lundi en premier
   encaisseMois: number;
   depensesMois: number;
+  /** Somme de tous les versements depuis le début du contrat, tous mois confondus. */
+  totalVerse: number;
   echeanceProche: Tables<"echeances"> | null;
   mouvements: Mouvement[];
 };
@@ -125,6 +127,7 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
     echeances,
     derniersVersements,
     dernieresDepenses,
+    tousVersements,
   ] = await Promise.all([
     getSolde(contrat.id),
     getMois(contrat.id, annee, mois),
@@ -169,6 +172,11 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
       .order("date", { ascending: false })
       .order("cree_le", { ascending: false })
       .limit(5),
+    // Total encaissé depuis le début du contrat, toutes périodes confondues.
+    supabase
+      .from("versements")
+      .select("montant")
+      .eq("contrat_id", contrat.id),
   ]);
 
   // Jours passés ou courant du mois, non versés / partiels (retard visible).
@@ -240,6 +248,10 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
     (s, d) => s + Number(d.montant),
     0
   );
+  const totalVerse = (tousVersements.data ?? []).reduce(
+    (s, v) => s + Number(v.montant),
+    0
+  );
 
   return {
     contrat,
@@ -254,6 +266,7 @@ export async function getAccueil(aujourdhui: string): Promise<Accueil | null> {
     semaine,
     encaisseMois,
     depensesMois: totalDepensesMois,
+    totalVerse,
     // L'alerte respecte le rappel_jours propre à chaque échéance
     echeanceProche:
       (echeances.data ?? []).find(
