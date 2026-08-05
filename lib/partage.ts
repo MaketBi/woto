@@ -15,6 +15,8 @@ export type DonneesPartage = {
   contrat: Tables<"contrats"> | null;
   solde: number;
   joursNonVerses: number;
+  /** Somme de tous les versements depuis le début du contrat, tous mois confondus. */
+  totalVerse: number;
   mois: JourEtat[];
   attendu: number;
   recu: number;
@@ -69,6 +71,7 @@ export async function getDonneesPartage(
   let mois: JourEtat[] = [];
   let derniersVersements: DonneesPartage["derniersVersements"] = [];
   let depensesMois = 0;
+  let totalVerse = 0;
 
   if (contratComplet) {
     const [annee, numMois] = [
@@ -77,29 +80,35 @@ export async function getDonneesPartage(
     ];
     const debutMois = `${aujourdhui.slice(0, 7)}-01`;
 
-    const [soldeRes, moisRes, versementsRes, depensesRes] = await Promise.all([
-      admin.rpc("solde_chauffeur", { p_contrat: contratComplet.id }),
-      admin.rpc("etat_du_mois", {
-        p_contrat: contratComplet.id,
-        p_annee: annee,
-        p_mois: numMois,
-      }),
-      admin
-        .from("versements")
-        .select("date, montant, mode")
-        .eq("contrat_id", contratComplet.id)
-        .order("date", { ascending: false })
-        .order("cree_le", { ascending: false })
-        .limit(5),
-      partage.voir_depenses
-        ? admin
-            .from("depenses")
-            .select("montant")
-            .eq("vehicule_id", partage.vehicule_id)
-            .gte("date", debutMois)
-            .lte("date", aujourdhui)
-        : Promise.resolve({ data: [] as { montant: number }[] }),
-    ]);
+    const [soldeRes, moisRes, versementsRes, depensesRes, tousVersementsRes] =
+      await Promise.all([
+        admin.rpc("solde_chauffeur", { p_contrat: contratComplet.id }),
+        admin.rpc("etat_du_mois", {
+          p_contrat: contratComplet.id,
+          p_annee: annee,
+          p_mois: numMois,
+        }),
+        admin
+          .from("versements")
+          .select("date, montant, mode")
+          .eq("contrat_id", contratComplet.id)
+          .order("date", { ascending: false })
+          .order("cree_le", { ascending: false })
+          .limit(5),
+        partage.voir_depenses
+          ? admin
+              .from("depenses")
+              .select("montant")
+              .eq("vehicule_id", partage.vehicule_id)
+              .gte("date", debutMois)
+              .lte("date", aujourdhui)
+          : Promise.resolve({ data: [] as { montant: number }[] }),
+        // Total encaissé depuis le début du contrat, toutes périodes confondues.
+        admin
+          .from("versements")
+          .select("montant")
+          .eq("contrat_id", contratComplet.id),
+      ]);
 
     solde = Number(soldeRes.data ?? 0);
     mois = (moisRes.data ?? []).map((j) => ({
@@ -118,6 +127,10 @@ export async function getDonneesPartage(
       (s, d) => s + Number(d.montant),
       0
     );
+    totalVerse = (tousVersementsRes.data ?? []).reduce(
+      (s, v) => s + Number(v.montant),
+      0
+    );
   }
 
   const passes = mois.filter((j) => j.jour <= aujourdhui);
@@ -129,6 +142,7 @@ export async function getDonneesPartage(
     contrat: contratComplet,
     solde,
     joursNonVerses: passes.filter((j) => j.etat === "non_verse").length,
+    totalVerse,
     mois,
     attendu: mois.reduce((s, j) => s + j.attendu, 0),
     recu: mois.reduce((s, j) => s + j.recu, 0),

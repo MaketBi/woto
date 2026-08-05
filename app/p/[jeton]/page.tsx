@@ -33,6 +33,7 @@ export default async function PagePublique({
     contrat,
     solde,
     joursNonVerses,
+    totalVerse,
     mois,
     attendu,
     recu,
@@ -41,6 +42,11 @@ export default async function PagePublique({
   } = donnees;
 
   const enRetard = solde > 0;
+  // Comme sur l'accueil admin : le grand chiffre est le cumul versé, pas le
+  // solde dû — sans ce repère, le badge du mois voisin induit en erreur.
+  const debutContrat = contrat
+    ? format(parseISO(contrat.date_debut), "d MMMM", { locale: fr })
+    : null;
   const nomMoisBrut = format(parseISO(aujourdhui), "MMMM yyyy", { locale: fr });
   const nomMois = nomMoisBrut.charAt(0).toUpperCase() + nomMoisBrut.slice(1);
   const nomVehicule = [vehicule.marque, vehicule.modele]
@@ -69,17 +75,17 @@ export default async function PagePublique({
                 {nomMois}
               </span>
             </div>
-            <div
-              className={clsx(
-                "mt-3.5 text-[46px] font-extrabold leading-none tracking-[-2.2px] tabular-nums",
-                enRetard ? "text-crit" : "text-white"
-              )}
-            >
-              {nombre(solde)}
+            <div className="mt-3.5 text-[46px] font-extrabold leading-none tracking-[-2.2px] tabular-nums text-white">
+              {nombre(totalVerse)}
               <span className="ml-1 text-xl tracking-normal text-on-ink-muted">
                 F
               </span>
             </div>
+            {debutContrat && (
+              <p className="mt-1.5 text-[11px] font-medium text-on-ink-muted">
+                versés depuis le {debutContrat}
+              </p>
+            )}
             <div className="mt-3 flex items-center gap-2">
               <span
                 className={clsx(
@@ -90,9 +96,14 @@ export default async function PagePublique({
               <span className="text-[13px] font-semibold text-on-ink">
                 {!enRetard
                   ? "À jour"
-                  : joursNonVerses > 0
-                    ? `${joursNonVerses} jour${joursNonVerses > 1 ? "s" : ""} non versé${joursNonVerses > 1 ? "s" : ""}`
-                    : "Solde à régler"}
+                  : [
+                      `Reste ${fcfa(solde)}`,
+                      joursNonVerses > 0
+                        ? `${joursNonVerses} jour${joursNonVerses > 1 ? "s" : ""} non versé${joursNonVerses > 1 ? "s" : ""}`
+                        : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
               </span>
             </div>
           </div>
